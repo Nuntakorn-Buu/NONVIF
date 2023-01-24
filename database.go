@@ -18,6 +18,6 @@ func database() {
 		log.Fatal(err)
 	}
 	db.SetMaxOpenConns(1)
-	log.Println("Database Connection Successful !!!")
+	log.Println("Database Connection : Successful !!!")
 	fmt.Println(" ")
 }
