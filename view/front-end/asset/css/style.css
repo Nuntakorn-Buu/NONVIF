@@ -3,7 +3,7 @@ body {
     font: 16px arial;
     margin: 0;
     padding: 0;
-    background: #2c3338;
+    background: #323232;
 }
 
 a{
@@ -12,8 +12,8 @@ a{
 
 #wrapper {
     width: 100%;
-    margin: 20px auto 0;
-    background-color: #2c3338;
+    margin: 0;
+    background-color: #323232;
     border-radius: 50px;
 }
 
@@ -34,8 +34,8 @@ a{
 }
 
 #menu {
-    margin-top: 20px;
-    background-color: #34495e;
+    /* margin-top: 20px; */
+    background-color: #930058;
 }
 
 .right_menu {
