@@ -20,18 +20,18 @@
 - Remove camera
 - Forget Password
 ---
-# Explain Details
+# Details
 ## Things to install before use
 - Ubuntu 20.04.5 LTS
--   Installation method ---> [<Link>](https://youtu.be/QKn5U2esuRk)
+    - Installation method ---> [Link](https://youtu.be/QKn5U2esuRk)
 - Golang version 1.19
--   Installation method ---> [<Link>](https://www.dropbox.com/scl/fi/9clhqzmcuk0gcjgby2h38/Golang.paper?dl=0&rlkey=pipvjgui4256g0wn4sp2aoklj)
+    - Installation method ---> [Link](https://www.dropbox.com/scl/fi/9clhqzmcuk0gcjgby2h38/Golang.paper?dl=0&rlkey=pipvjgui4256g0wn4sp2aoklj)
 ## Backend
-- HTTP Middleware [gorilla/mux](https://github.com/gorilla/mux)
-- Login Session [gorilla/sessions](https://github.com/gorilla/sessions)
-- Database Sqlite [go-sqlite3](https://github.com/mattn/go-sqlite3) & [msql](https://github.com/mateors/msql)
+- HTTP Middleware ( [gorilla/mux](https://github.com/gorilla/mux) )
+- Login Session ( [gorilla/sessions](https://github.com/gorilla/sessions) )
+- Database Sqlite ( [go-sqlite3](https://github.com/mattn/go-sqlite3) & [msql](https://github.com/mateors/msql) )
 ## Frontend
-- Server side templating [Go HTML Templates](https://pkg.go.dev/html/template)
+- Server side templating ( [Go HTML Templates](https://pkg.go.dev/html/template) )
 - Frontend ```Pure ( HTML , CSS )```
 ## Modules
 ```go
@@ -45,5 +45,5 @@ require (
 // indirect
 require (
     github.com/gorilla/securecookie v1.1.1
-    ) 
+) 
 ```
