@@ -14,6 +14,8 @@ import (
 var (
 	homeView            *view.View
 	aboutView           *view.View
+	camerasView         *view.View
+	dashboardView       *view.View
 	portfolioView       *view.View
 	notFountView        *view.View
 	loginView           *view.View
@@ -139,6 +141,34 @@ func home(w http.ResponseWriter, r *http.Request) {
 	_, ok := session.Values["username"]
 	if ok {
 		err := homeView.Template.Execute(w, nil)
+		FetchError(err)
+	} else {
+		http.Redirect(w, r, "/login", http.StatusSeeOther)
+	}
+
+}
+
+// API Cameras page
+func cameras(w http.ResponseWriter, r *http.Request) {
+	session, err := store.Get(r, "login-session")
+	FetchError(err)
+	_, ok := session.Values["username"]
+	if ok {
+		err := camerasView.Template.Execute(w, nil)
+		FetchError(err)
+	} else {
+		http.Redirect(w, r, "/login", http.StatusSeeOther)
+	}
+
+}
+
+// API Dashboard page
+func dashboard(w http.ResponseWriter, r *http.Request) {
+	session, err := store.Get(r, "login-session")
+	FetchError(err)
+	_, ok := session.Values["username"]
+	if ok {
+		err := dashboardView.Template.Execute(w, nil)
 		FetchError(err)
 	} else {
 		http.Redirect(w, r, "/login", http.StatusSeeOther)

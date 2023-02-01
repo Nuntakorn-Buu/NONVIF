@@ -23,6 +23,8 @@ func init() {
 func main() {
 	homeView = view.NewView("view/front-end/index.html")
 	aboutView = view.NewView("view/front-end/about.html")
+	camerasView = view.NewView("view/front-end/cameras.html")
+	dashboardView = view.NewView("view/front-end/dashboard.html")
 	portfolioView = view.NewView("view/front-end/portfolio.html")
 	notFountView = view.NewView("view/front-end/notfount.html")
 	loginView = view.NewView("view/front-end/login.html")
@@ -39,6 +41,8 @@ func main() {
 	r.HandleFunc("/loginauth", loginAuth)
 	r.HandleFunc("/", home)
 	r.HandleFunc("/about", about)
+	r.HandleFunc("/cameras", cameras)
+	r.HandleFunc("/dashboard", dashboard)
 	r.HandleFunc("/portfolio", portfolio)
 	r.HandleFunc("/signup", signup)
 	r.HandleFunc("/signupauth", signupAuth)
