@@ -1,402 +1,347 @@
 {{template "Header"}}
 {{template "Menu"}}
 
-<!-- Navbar -->
-
-    <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
-    <div
-      id="navDemo"
-      class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top"
-      style="margin-top: 46px"
-    >
-      <a
-        href="#band"
-        class="w3-bar-item w3-button w3-padding-large"
-        onclick="myFunction()"
-        >BAND</a
-      >
-      <a
-        href="#tour"
-        class="w3-bar-item w3-button w3-padding-large"
-        onclick="myFunction()"
-        >TOUR</a
-      >
-      <a
-        href="#contact"
-        class="w3-bar-item w3-button w3-padding-large"
-        onclick="myFunction()"
-        >CONTACT</a
-      >
-      <a
-        href="#"
-        class="w3-bar-item w3-button w3-padding-large"
-        onclick="myFunction()"
-        >MERCH</a
-      >
-    </div>
-
-    <!-- Page content -->
-    <div class="w3-content" style="max-width: 2000px; margin-top: 46px">
-      <!-- Automatic Slideshow Images -->
-      <div class="mySlides w3-display-container w3-center">
-        <img
-          src="https://eng.buu.ac.th/web2020/wp-content/uploads/2021/04/DSC_9286-690x550.jpg"
-          style="width: 70%"
-          height="670px"
-        />
-        <div
-          class="w3-display-bottommiddle w3-container w3-text-dark-gray w3-padding-32 w3-hide-medium"
-        >
-          <h2>Burapha University</h2>
-          <h4><b>FACULTY OF ENGINEERING !!!</b></h4>
+<!-- index -->
+<div class="index">
+    <!-- Header -->
+    <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;">
+        <img class="w3-image w3-center" src="./asset/images/ONVIF-1.gif" alt="Architecture" width="1450" height="500">
+        <div class="w3-center">
+            <h1 class="w3-xxlarge">
+                <span class="w3-padding w3-black w3-round-medium w3-text-deep-orange w3-card-4"><b>NONVIF</b></span>
+                <span class="w3-hide-small w3-text-white w3-xlarge w3-border-bottom"
+                    style="text-shadow:2px 2px 0 rgb(0, 0, 0)">Project</span>
+            </h1>
         </div>
-      </div>
-      <div class="mySlides w3-display-container w3-center">
-        <img
-          src="https://map.longdo.com/files/images/2019/01/15/phpGQNE3P"
-          style="width: 70%"
-          height="670px"
-        />
-        <div
-          class="w3-display-bottommiddle w3-container w3-text-dark-gray w3-padding-32 w3-hide-medium"
-        >
-          <h2>Mathayomwatsing school</h2>
-          <h4><b>HIGH SCHOOL</b></h4>
-        </div>
-      </div>
-      <div class="mySlides w3-display-container w3-center">
-        <img
-          src="https://lh5.googleusercontent.com/T-GlbhURQ56tER3zqu3PB5hHnKUxSFl5dFGI1OsdBUw0M7CdmSSJbkB_fQjon74=w1080-k-no"
-          style="width: 70%"
-          height="670px"
-        />
-        <div
-          class="w3-display-bottommiddle w3-container w3-text-light-gray w3-padding-32 w3-hide-medium"
-        >
-          <h2>RajPrachaSamasai School Under the Royal Patronage</h2>
-          <h4><b>PRIMARY SCHOOL &amp; KINDERGARTEN</b></h4>
-        </div>
-      </div>
+    </header>
+    <!-- End Header -->
 
-      <!-- The Band Section -->
-      <div
-        class="w3-container w3-content w3-center w3-padding-64"
-        style="max-width: 800px"
-        id="band"
-      >
-        <h2 class="w3-wide">
-          Welcome <br />
-          {{.email}}
-        </h2>
-        <img
-          src="https://sv1.picz.in.th/images/2022/05/23/HlH0Pk.jpg"
-          alt="avatar.jpg"
-          style="width: 30%"
-        />
-        <p class="w3-opacity"><i>We love music</i></p>
-        <p class="w3-justify">
-          We have created a fictional band website. Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est
-          laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-          nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat.
-        </p>
+    <!-- Main Content -->
+    <div class="w3-content w3-padding" style="max-width:1564px">
 
-        <div class="w3-row w3-padding-32">
-          <div class="w3-third">
-            <p>Name</p>
-            <img
-              src="https://paper.dropbox.com/ep/redirect/image?url=https%3A%2F%2Fpaper-attachments.dropbox.com%2Fs_D1388C4A8F6C7191BDE5DBCDDA8DE42128EA7C86181A9CA676728A54E95C1F53_1652954777063_600258.jpg&hmac=76hUmabeLgoqVWtKICRI5y4xgBao1kvgaWvhESm3VP0%3D&width=1490"
-              class="w3-round w3-margin-bottom"
-              alt="Random Name"
-              style="width: 60%"
-            />
-          </div>
-          <div class="w3-third">
-            <p>Name</p>
-            <img
-              src="/w3images/bandmember.jpg"
-              class="w3-round w3-margin-bottom"
-              alt="Random Name"
-              style="width: 60%"
-            />
-          </div>
-          <div class="w3-third">
-            <p>Name</p>
-            <img
-              src="/w3images/bandmember.jpg"
-              class="w3-round"
-              alt="Random Name"
-              style="width: 60%"
-            />
-          </div>
-        </div>
-      </div>
-
-      <!-- The Tour Section -->
-      <div class="w3-black" id="tour">
-        <div
-          class="w3-container w3-content w3-padding-64"
-          style="max-width: 800px"
-        >
-          <h2 class="w3-wide w3-center">TOUR DATES</h2>
-          <p class="w3-opacity w3-center">
-            <i>Remember to book your tickets!</i>
-          </p>
-          <br />
-
-          <ul class="w3-ul w3-border w3-white w3-text-grey">
-            <li class="w3-padding">
-              September
-              <span class="w3-tag w3-red w3-margin-left">Sold out</span>
-            </li>
-            <li class="w3-padding">
-              October <span class="w3-tag w3-red w3-margin-left">Sold out</span>
-            </li>
-            <li class="w3-padding">
-              November <span class="w3-badge w3-right w3-margin-right">3</span>
-            </li>
-          </ul>
-
-          <div class="w3-row-padding w3-padding-32" style="margin: 0 -16px">
-            <div class="w3-third w3-margin-bottom">
-              <img
-                src="/w3images/newyork.jpg"
-                alt="New York"
-                style="width: 100%"
-                class="w3-hover-opacity"
-              />
-              <div class="w3-container w3-white">
-                <p><b>New York</b></p>
-                <p class="w3-opacity">Fri 27 Nov 2016</p>
-                <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                <button
-                  class="w3-button w3-black w3-margin-bottom"
-                  onclick="document.getElementById('ticketModal').style.display='block'"
-                >
-                  Buy Tickets
-                </button>
-              </div>
+        <!-- Project Topic -->
+        <div class="w3-container w3-padding-32">
+            <h3 class="w3-text-white w3-border-bottom w3-border-light-grey w3-padding-16 w3-xxlarge"
+                style="text-shadow:2px 2px 0 rgb(0, 0, 0)"><b>Topic</b>&nbsp;
+                <i class="fa-solid fa-user w3-text-pink"></i>
+            </h3>
+            <div class="w3-margin-top w3-padding w3-black w3-round-xxlarge w3-card-2">
+                <h1 class="w3-xlarge">
+                    <div class="w3-text-aqua w3-xlarge">
+                        <i class="fa-solid fa-hashtag"></i>
+                        การประยุกต์ใช้โปรโตคอล
+                        ONVIF
+                        เพื่อรองรับการจัดการกล้องไอพีและการสตรีมวิดีโอผ่านเว็บไซต์
+                    </div>
+                </h1>
             </div>
-            <div class="w3-third w3-margin-bottom">
-              <img
-                src="/w3images/paris.jpg"
-                alt="Paris"
-                style="width: 100%"
-                class="w3-hover-opacity"
-              />
-              <div class="w3-container w3-white">
-                <p><b>Paris</b></p>
-                <p class="w3-opacity">Sat 28 Nov 2016</p>
-                <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                <button
-                  class="w3-button w3-black w3-margin-bottom"
-                  onclick="document.getElementById('ticketModal').style.display='block'"
-                >
-                  Buy Tickets
-                </button>
-              </div>
+            <div class="w3-margin-top w3-padding w3-black w3-round-xxlarge w3-card-2">
+                <h1 class="w3-xlarge">
+                    <div class="w3-text-deep-orange w3-xlarge">
+                        <i class="fa-solid fa-hashtag"></i>
+                        Application of the
+                        ONVIF Protocol to support IP
+                        camera management
+                        and
+                        video streaming through
+                        websites
+                    </div>
+                </h1>
             </div>
-            <div class="w3-third w3-margin-bottom">
-              <img
-                src="/w3images/sanfran.jpg"
-                alt="San Francisco"
-                style="width: 100%"
-                class="w3-hover-opacity"
-              />
-              <div class="w3-container w3-white">
-                <p><b>San Francisco</b></p>
-                <p class="w3-opacity">Sun 29 Nov 2016</p>
-                <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-                <button
-                  class="w3-button w3-black w3-margin-bottom"
-                  onclick="document.getElementById('ticketModal').style.display='block'"
-                >
-                  Buy Tickets
-                </button>
-              </div>
+            <div class="w3-bar">
+                <p class="w3-text-white w3-xlarge" style="text-shadow:2px 2px 0 rgb(0, 0, 0)">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    รายงานการศึกษานี้มีวัตถุประสงค์เพื่อลดปัญหาการส่งข้อมูลภาพ
+                    วิดีโอและข้อมูลเมตาที่แยกการจัดส่งข้อมูลกัน ส่งผลให้ปลายทางผู้รับเห็นข้อมูลภาพวิดีโอและ
+                    ข้อมมูลเมตาไม่ตรงกัน โดยแก้ไขให้เป็นการบรรจุข้อมูลทั้งสองไปในการบรรจุเดียวที่ต้นทาง ในรูปแบบ
+                    มาตรฐาน ONVIF เพื่อลดปัญหาการใช้งานข้ามอุปกรณ์ ข้ามยี่ห้อไม่ได้ การใช้งานโปรแกรมที่
+                    แตกต่างกันตามแต่ละยี่ห้อของผู้ให้บริการกล้องไอพีด้วยการใช้งานตามมาตรฐาน ONVIF เพื่อให้
+                    กล้องไอพีที่ยังไม่มีมาตรฐาน ONVIF สามารถมาใช้งานกับตัวโครงงานนี้ได้ เพื่อศึกษา
+                    หลักการใช้งานมาตรฐาน ONVIF ในการสตรีมภาพวิดีโอและข้อมูลเมตาไปยังหน้าเว็บไซต์ พร้อม
+                    ทั้งการจัดการกล้องไอพีได้ที่หน้าเว็บไซต์
+                </p>
             </div>
-          </div>
         </div>
-      </div>
+        <!-- End Project Topic -->
 
-      <!-- Ticket Modal -->
-      <div id="ticketModal" class="w3-modal">
-        <div class="w3-modal-content w3-animate-top w3-card-4">
-          <header class="w3-container w3-teal w3-center w3-padding-32">
-            <span
-              onclick="document.getElementById('ticketModal').style.display='none'"
-              class="w3-button w3-teal w3-xlarge w3-display-topright"
-              >×</span
-            >
-            <h2 class="w3-wide">
-              <i class="fa fa-suitcase w3-margin-right"></i>Tickets
-            </h2>
-          </header>
-          <div class="w3-container">
-            <p>
-              <label
-                ><i class="fa fa-shopping-cart"></i> Tickets, $15 per
-                person</label
-              >
-            </p>
-            <input
-              class="w3-input w3-border"
-              type="text"
-              placeholder="How many?"
-            />
-            <p>
-              <label><i class="fa fa-user"></i> Send To</label>
-            </p>
-            <input
-              class="w3-input w3-border"
-              type="text"
-              placeholder="Enter email"
-            />
-            <button
-              class="w3-button w3-block w3-teal w3-padding-16 w3-section w3-right"
-            >
-              PAY <i class="fa fa-check"></i>
-            </button>
-            <button
-              class="w3-button w3-red w3-section"
-              onclick="document.getElementById('ticketModal').style.display='none'"
-            >
-              Close <i class="fa fa-remove"></i>
-            </button>
-            <p class="w3-right">
-              Need <a href="#" class="w3-text-blue">help?</a>
-            </p>
-          </div>
+        <hr>
+
+        <!-- About -->
+        <div class="w3-row w3-padding-16">
+            <div class="w3-col m6 w3-padding-large w3-hide-small" style="margin-top: 150px;">
+                <img src="./asset/images/ONVIF-2.png" class="w3-white w3-round-xxlarge w3-image w3-card-2" alt="logo-3"
+                    width="700" height="750">
+            </div>
+            <div class="w3-col m6 w3-padding-large">
+                <h1 class="w3-center w3-text-blue" style="text-shadow:2px 2px 0 rgb(0, 0, 0)">
+                    <b>ONVIF Protocol </b>
+                    <i class="fa-regular fa-file-code w3-text-pink"></i>
+                </h1>
+                <h3 class="w3-center w3-text-white" style="text-shadow:2px 2px 0 rgb(0, 0, 0)">คืออะไร ???</h3>
+                <p class="w3-large w3-text-white">Open Network Video Interface Forum (ONVIF)
+                    เป็นโปรโตคอลที่สร้างขึ้นเพื่อสร้างมาตรฐานในการสื่อสารระหว่างอุปกรณ์วิดีโอเครือข่ายประเภทต่างๆ เช่น
+                    กล้อง IP,
+                    ตัวเข้ารหัสวิดีโอ และเครื่องบันทึกวิดีโอเครือข่าย โปรโตคอล ONVIF
+                    จัดเตรียมภาษาทั่วไปที่ช่วยให้อุปกรณ์เหล่านี้แบ่งปันวิดีโอและข้อมูลอื่นๆ ผ่านเครือข่าย
+                    <span class="w3-tag w3-yellow w3-round-large w3-card-2">โดยไม่คำนึงถึง
+                        ผู้ผลิตหรือรุ่นของอุปกรณ์</span>
+                </p>
+                <p class="w3-large w3-text-white">โปรโตคอล ONVIF
+                    ให้ประโยชน์หลายประการแก่ผู้ใช้และผู้ผลิตอุปกรณ์วิดีโอเครือข่าย ประโยชน์ที่สำคัญบางประการ ได้แก่ :
+                    <br>
+                </p>
+                <p class="w3-large w3-text-aqua" style="text-shadow:2px 2px 0 rgb(0, 0, 0)">
+                    ๐ การทำงานร่วมกัน :
+                    <span class="w3-text-white"> ONVIF ช่วยให้อุปกรณ์วิดีโอเครือข่ายยี่ห้อต่างๆ สามารถสื่อสารกันได้
+                        ทำให้ง่ายต่อการสร้างระบบวิดีโอเฝ้าระวังที่มีผู้ขายหลายราย <br>
+                    </span>
+                    ๐ ความยืดหยุ่น :
+                    <span class="w3-text-white"> ONVIF รองรับตัวแปลงสัญญาณวิดีโอ ความละเอียด
+                        และอัตราเฟรมที่หลากหลาย
+                        ซึ่งทำให้ง่ายต่อการรวมกล้องประเภทต่างๆและอุปกรณ์อื่นๆ ไว้ในระบบเดียว <br>
+                    </span>
+                    ๐ ผสานรวมกันได้ง่าย :
+                    <span class="w3-text-white"> ONVIF
+                        ช่วยลดความยุ่งยากในกระบวนการรวมอุปกรณ์ประเภทต่างๆ เข้ากับระบบกล้องวงจรปิด
+                        ซึ่งช่วยลดเวลาและความพยายามที่จำเป็นในการกำหนดค่าและจัดการระบบ <br>
+                    </span>
+                    ๐ การใช้งานในอนาคต :
+                    <span class="w3-text-white">ด้วยการใช้โปรโตคอลมาตรฐานเช่น ONVIF องค์กรต่างๆ
+                        สามารถมั่นใจได้ว่าระบบกล้องวงจรปิดของตนสามารถทำงานร่วมกับอุปกรณ์และเทคโนโลยีใหม่ๆ
+                        ที่อาจเปิดตัวในอนาคต
+                    </span>
+                </p>
+            </div>
         </div>
-      </div>
+        <!-- End About -->
 
-      <!-- The Contact Section -->
-      <div
-        class="w3-container w3-content w3-padding-64"
-        style="max-width: 800px"
-        id="contact"
-      >
-        <h2 class="w3-wide w3-center">CONTACT</h2>
-        <p class="w3-opacity w3-center"><i>Fan? Drop a note!</i></p>
-        <div class="w3-row w3-padding-32">
-          <div class="w3-col m6 w3-large w3-margin-bottom">
-            <i class="fa fa-map-marker" style="width: 30px"></i> Chicago, US<br />
-            <i class="fa fa-phone" style="width: 30px"></i> Phone: +00 151515<br />
-            <i class="fa fa-envelope" style="width: 30px"> </i> Email:
-            mail@mail.com<br />
-          </div>
-          <div class="w3-col m6">
-            <form action="/action_page.php" target="_blank">
-              <div class="w3-row-padding" style="margin: 0 -16px 8px -16px">
-                <div class="w3-half">
-                  <input
-                    class="w3-input w3-border"
-                    type="text"
-                    placeholder="Name"
-                    required
-                    name="Name"
-                  />
+        <!-- Profile ONVIF -->
+        <div class="w3-row-padding">
+            <h3 class="w3-text-white w3-padding-16 w3-xxlarge" style="text-shadow:2px 2px 0 rgb(0, 0, 0)">
+                <b>Profiles ONVIF</b>&nbsp;
+                <i class="fa-solid fa-file w3-text-pink"></i>
+            </h3>
+            <div class="w3-light-green w3-round-xlarge w3-col l3 m6 w3-margin-bottom w3-padding-top-24">
+                <img src="./asset/images/ONVIF-S.jpg" class="w3-round-medium" alt="Profile S" style="width:100%">
+                <h3><b>Profile S</b></h3>
+                <p class="w3-opacity-min">Basic video streaming</p>
+                <p>๐ Video streaming and configuration
+                    <br><br><br><br><br><br><br><br><br><br><br>
+                </p>
+                <p>
+                    <a href="https://www.onvif.org/profiles/profile-s/">
+                        <button class="w3-button w3-light-grey w3-hover-white w3-block w3-round-xxlarge">More
+                        </button>
+                    </a>
+                </p>
+            </div>
+            <div class="w3-aqua w3-round-xlarge w3-col l3 m6 w3-margin-bottom w3-padding-top-24">
+                <img src="./asset/images/ONVIF-T.jpg" class="w3-round-medium" alt="Profile T" style="width:100%">
+                <h3><b>Profile T</b></h3>
+                <p class="w3-opacity-min">Advanced video streaming</p>
+                <p>๐ H.264 / H.265 video compression <br>
+                    ๐ Imaging settings <br>
+                    ๐ Motion alarm and tampering events <br>
+                    ๐ Bi-directional audio <br>
+                    ๐ <span class="w3-border-bottom w3-text-red">Video Streaming <br></span>
+                    ๐ <span class="w3-border-bottom w3-text-red">Metadata Streaming
+                        <br></span><br><br><br><br><br>
+                </p>
+                <p>
+                    <a href="https://www.onvif.org/profiles/profile-t/">
+                        <button class="w3-button w3-light-grey w3-hover-white w3-block w3-round-xxlarge">More
+                        </button>
+                    </a>
+                </p>
+            </div>
+            <div class="w3-light-green w3-round-xlarge w3-col l3 m6 w3-margin-bottom w3-padding-top-24">
+                <img src="./asset/images/ONVIF-G.jpg" class="w3-round-medium" alt="Profile G" style="width:100%">
+                <h3><b>Profile G</b></h3>
+                <p class="w3-opacity-min">Edge storage and retrieval</p>
+                <p>๐ Configure, request and control recording <br>
+                    ๐ Receive audio and metadata stream <br><br><br><br><br><br><br><br><br><br></p>
+                <p>
+                    <a href="https://www.onvif.org/profiles/profile-g/">
+                        <button class="w3-button w3-light-grey w3-hover-white w3-block w3-round-xxlarge">More
+                        </button>
+                    </a>
+                </p>
+            </div>
+            <div class="w3-aqua w3-round-xlarge w3-col l3 m6 w3-margin-bottom w3-padding-top-24">
+                <img src="./asset/images/ONVIF-M.jpg" class="w3-round-medium" alt="Profile M" style="width:100%">
+                <h3><b>Profile M</b></h3>
+                <p class="w3-opacity-min">Metadata and events for analytics applications</p>
+                <p>๐ Analytics configuration and information query for metadata <br>
+                    ๐ Configuration and streaming of metadata <br>
+                    ๐ Generic object classification support <br>
+                    ๐ Metadata definition for geolocation, vehicle, license plate, human face and body <br>
+                    ๐ Event interfaces for object counter, face and license plate recognition analytics <br>
+                    ๐ Sending events through metadata stream, ONVIF event service or over MQTT <br>
+                    ๐ Rule configuration for events <br>
+                </p>
+                <p>
+                    <a href="https://www.onvif.org/profiles/profile-m/">
+                        <button class="w3-button w3-light-grey w3-hover-white w3-block w3-round-xxlarge">More
+                        </button>
+                    </a>
+                </p>
+            </div>
+        </div>
+        <!-- End Profile ONVIF -->
+
+        <hr>
+
+        <!-- Features Section -->
+        <div class="w3-row w3-padding-64" id="menu">
+            <div class="w3-col l6 w3-padding-large">
+                <h1 class="w3-center w3-text-blue" style="text-shadow:2px 2px 0 rgb(0, 0, 0)"><b>Features Projects</b>
+                    <i class="fa-solid fa-feather w3-text-pink"></i>
+                </h1>
+                <div class="w3-container w3-padding-top-32 w3-text-white"
+                    style="padding: 50px; text-shadow:2px 2px 0 rgb(0, 0, 0)">
+                    <div class="w3-left">
+                        <h3><i class="fa-solid fa-arrow-right"></i> &nbsp; &nbsp; Signup page</h3>
+                        <h3><i class="fa-solid fa-arrow-right"></i> &nbsp; &nbsp; Login page</h3>
+                        <h3><i class="fa-solid fa-arrow-right"></i> &nbsp; &nbsp; Logout page</h3>
+                        <h3><i class="fa-solid fa-arrow-right"></i> &nbsp; &nbsp; Forget Password</h3>
+                        <h3><i class="fa-solid fa-arrow-right"></i> &nbsp; &nbsp; Home page</h3>
+                    </div>
+                    <div class="w3-right">
+                        <h3><i class="fa-solid fa-arrow-right"></i> &nbsp; &nbsp; Cameras page</h3>
+                        <h3><i class="fa-solid fa-arrow-right"></i> &nbsp; &nbsp; Dashboard page</h3>
+                        <h3><i class="fa-solid fa-arrow-right"></i> &nbsp; &nbsp; About page</h3>
+                        <h3><i class="fa-solid fa-arrow-right"></i> &nbsp; &nbsp; Portfolio page</h3>
+                        <h3><i class="fa-solid fa-arrow-right"></i> &nbsp; &nbsp; Add - Remove camera</h3>
+                    </div>
                 </div>
-                <div class="w3-half">
-                  <input
-                    class="w3-input w3-border"
-                    type="text"
-                    placeholder="Email"
-                    required
-                    name="Email"
-                  />
-                </div>
-              </div>
-              <input
-                class="w3-input w3-border"
-                type="text"
-                placeholder="Message"
-                required
-                name="Message"
-              />
-              <button
-                class="w3-button w3-black w3-section w3-right"
-                type="submit"
-              >
-                SEND
-              </button>
-            </form>
-          </div>
+            </div>
+
+            <div class="w3-col l6 w3-padding-large">
+                <img src="./asset/images/ONVIF-T-2.png" class="w3-round-xlarge w3-image w3-card-4" alt="ONVIF-2"
+                    style="width:100%">
+            </div>
         </div>
-      </div>
+        <!-- End Features Section -->
 
-      <!-- End Page Content -->
+        <hr>
+
+        <!-- Expand the project -->
+        <div class="w3-container w3-padding-32">
+            <h1 class="w3-text-white" style="text-shadow:2px 2px 0 rgb(0, 0, 0)">
+                <b>การนำ Project ไปต่อยอด : </b>
+                <i class="fa-solid fa-cube w3-text-pink"></i>
+            </h1>
+        </div>
+
+        <div class=" w3-row-padding">
+            <div class="w3-col l6 m6 w3-margin-bottom">
+                <div class="w3-display-container">
+                    <div class="w3-display-topleft w3-lime w3-padding w3-xlarge">Temperature</div>
+                    <img src="./asset/images/AI-1.png" alt="AI-1" style="width:100%; max-height: 400px;">
+                </div>
+            </div>
+            <div class="w3-col l6 m6 w3-margin-bottom">
+                <div class="w3-display-container">
+                    <div class="w3-display-topleft w3-lime w3-padding w3-xlarge">Mask Check</div>
+                    <img src="./asset/images/AI-2.jpg" alt="camera-2" style="width:100%; max-height: 400px;">
+                </div>
+            </div>
+        </div>
+
+        <div class=" w3-row-padding">
+            <div class="w3-col l6 m6 w3-margin-bottom">
+                <div class="w3-display-container">
+                    <div class="w3-display-topleft w3-lime w3-padding w3-xlarge">Temperature & Location</div>
+                    <img src="./asset/images/AI-3.jpg" alt="camera-2" style="width:100%; max-height: 400px;">
+                </div>
+            </div>
+            <div class="w3-col l6 m6 w3-margin-bottom">
+                <div class="w3-display-container">
+                    <div class="w3-display-topleft w3-lime w3-padding w3-xlarge">Area & Car</div>
+                    <img src="./asset/images/AI-4.jpg" alt="camera-2" style="width:100%; max-height: 400px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-row-padding">
+            <div class="w3-col l6 m6 w3-margin-bottom">
+                <div class="w3-display-container">
+                    <div class="w3-display-topleft w3-lime w3-padding w3-xlarge">Direction Car</div>
+                    <img src="./asset/images/AI-5.png" alt="camera-2" style="width:100%; max-height: 400px;">
+                </div>
+            </div>
+            <div class="w3-col l6 m6 w3-margin-bottom">
+                <div class="w3-display-container">
+                    <div class="w3-display-topleft w3-lime w3-padding w3-xlarge">Car Type</div>
+                    <img src="./asset/images/AI-6.webp" alt="camera-2" style="width:100%; max-height: 400px;">
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-row-padding">
+            <div class="w3-col l6 m6 w3-margin-bottom">
+                <div class="w3-display-container">
+                    <div class="w3-display-topleft w3-lime w3-padding w3-xlarge">Car Speed</div>
+                    <img src="./asset/images/AI-7.jpg" alt="camera-2" style="width:100%; max-height: 400px;">
+                </div>
+            </div>
+            <div class="w3-col l6 m6 w3-margin-bottom">
+                <div class="w3-display-container">
+                    <div class="w3-display-topleft w3-lime w3-padding w3-xlarge">Overall</div>
+                    <img src="./asset/images/AI-8.jpg" alt="camera-2" style="width:100%; max-height: 400px;">
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <!-- End xpand the project -->
+
+        <!-- Link Referent -->
+        <div class="w3-container w3-center">
+            <a href="https://www.dropbox.com/scl/fo/u5jpjdt5kl9rkvd1dxl3g/h?dl=0&rlkey=a2478l6wdbykoqslig7ipcwto">
+                <h2 style="font-size: 40px; margin-top: 10px; text-shadow:2px 2px 0 rgb(255, 0, 106);">
+                    <span
+                        class="w3-black w3-hover-pink w3-hover-text-white w3-text-white w3-card-4 w3-round-xlarge w3-padding w3-card-2">
+                        <i class="fa-brands fa-dropbox w3-padding-small w3-text-white"></i>
+                        My Dropbox
+                    </span>
+                </h2>
+            </a>
+
+            <a href="https://github.com/Nuntakorn-Buu/NONVIF">
+                <h2 style="font-size: 40px; margin-top: 30px; text-shadow:2px 2px 0 rgb(255, 0, 106);">
+                    <span
+                        class="w3-black w3-hover-pink w3-hover-text-white w3-text-white w3-card-4 w3-round-xlarge w3-padding w3-card-2">
+                        <i class="fa-brands fa-github w3-padding-small w3-text-white"></i>
+                        My Github
+                    </span>
+                </h2>
+            </a>
+        </div>
+        <!-- End Link Referent -->
+
+        <hr>
+
+        <!-- Image Camera -->
+        <div class="w3-container w3-center">
+            <img src="./asset/images/ONVIF-2.png" class="w3-image" style="width: 100%;">
+        </div>
+
     </div>
-
-    <!-- Image of location/map -->
-    <img
-      src="/w3images/map.jpg"
-      class="w3-image w3-greyscale-min"
-      style="width: 100%"
-    />
+    <!-- End Main Content -->
 
     <!-- Footer -->
-    <footer
-      class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge"
-    >
-      <i class="fa fa-facebook-official w3-hover-opacity"></i>
-      <i class="fa fa-instagram w3-hover-opacity"></i>
-      <i class="fa fa-snapchat w3-hover-opacity"></i>
-      <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-      <i class="fa fa-twitter w3-hover-opacity"></i>
-      <i class="fa fa-linkedin w3-hover-opacity"></i>
-      <p class="w3-medium">
-        Powered by
-        <a href="https://www.w3schools.com/w3css/default.asp" target="_blank"
-          >w3.css</a
-        >
-      </p>
+    <footer class="w3-xlarge w3-center w3-black w3-padding-16">
+        <p>Powered by :
+            <a href="/portfolio" title="Portfolio" target="_blank" class="w3-hover-text-pink w3-large">Nuntakorn
+                Sopap.</a>
+        </p>
     </footer>
+    <!-- End Footer -->
 
-    <script>
-      // Automatic Slideshow - change image every 4 seconds
-      var myIndex = 0;
-      carousel();
+</div>
+<!-- End index -->
 
-      function carousel() {
-        var i;
-        var x = document.getElementsByClassName("mySlides");
-        for (i = 0; i < x.length; i++) {
-          x[i].style.display = "none";
-        }
-        myIndex++;
-        if (myIndex > x.length) {
-          myIndex = 1;
-        }
-        x[myIndex - 1].style.display = "block";
-        setTimeout(carousel, 4000);
-      }
-
-      // Used to toggle the menu on small screens when clicking on the menu button
-      function myFunction() {
-        var x = document.getElementById("navDemo");
-        if (x.className.indexOf("w3-show") == -1) {
-          x.className += " w3-show";
-        } else {
-          x.className = x.className.replace(" w3-show", "");
-        }
-      }
-
-      // When the user clicks anywhere outside of the modal, close it
-      var modal = document.getElementById("ticketModal");
-      window.onclick = function (event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      };
-    </script>
 </div>
 </body>
 
