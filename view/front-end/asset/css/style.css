@@ -18,6 +18,10 @@
     --color-dark-3: #616161;
 }
 
+html{
+    scroll-behavior: auto;
+}
+
 body {
     font: 16px arial;
     margin: 0;
@@ -33,60 +37,9 @@ a{
     width: 100%;
     margin: 0;
     background-color: var(--color-dark-1);
-    border-radius: 50px;
 }
 
-#header {
-    text-align: center;
-    background-color: var(--color-primary-1);
-    padding: 10px;
-    border-radius: 50px;
-}
-
-#header h1 {
-    color: var(--color-white-1);
-    font-size: 40px;
-    font-style: italic;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin: 0;
-}
-
-#menu {
-    /* margin-top: 20px; */
-    background-color: var(--color-primary-2);
-}
-
-.right_menu {
-    float: right;
-}
-
-#menu ul {
-    font-size: 0;
-    padding: 0 20px;
-    margin: 0;
-    list-style: none;
-}
-
-#menu ul li {
-    display: inline-block;
-}
-
-#menu ul li a {
-    color: var(--color-white-1);
-    font-size: 16px;
-    font-weight: 600;
-    padding: 8px 10px;
-    display: block;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-}
-
-#menu ul li a:hover {
-    background-color: var(--color-warning-1);
-}
-
+/* Main-Content Start*/
 #main-content {
     padding: 25px;
     min-height: 400px;
@@ -209,7 +162,9 @@ a{
 #main-content .pagination li a:hover {
     background-color: var(--color-dark-1);
 }
+/* Main-Content End*/
 
+/* Login-Start */
 .login_body {
     background-color: var(--color-white-1);
     font-family: 'Poppins', sans-serif;
@@ -262,7 +217,9 @@ a{
     color: var(--color-white-2);
     margin-bottom: 20px;
 }
+/* Login End */
 
+/* Fotgot Start */
 .forgot{
     text-align: center;
     color: var(--color-danger-1);
@@ -270,7 +227,9 @@ a{
     padding-bottom: 20px;
     border-bottom: 1px solid var(--color-white-3);
 }
+/* Forgot End */
 
+/* Create Ac Start */
 .createAc{
     border-top: 2px solid var(--color-text-1);
 }
@@ -278,7 +237,10 @@ a{
 .createAc a {
     color: var(--color-primary-1);
 }
+/* Create Ac End */
 
+/* Not Fount Start */
 .notFount{
     text-align: center;
 }
+/* Not Fount End */
