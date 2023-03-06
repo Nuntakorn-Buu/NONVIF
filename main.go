@@ -17,7 +17,7 @@ var store = sessions.NewCookieStore([]byte("secret-password"))
 
 // สร้างฟังก์ชั่นสำหรับเรียกใช้ database
 func init() {
-	database()
+	database_user()
 }
 
 func main() {
@@ -52,7 +52,7 @@ func main() {
 	r.HandleFunc("/code_verify", forgotCodeVerify)
 	r.HandleFunc("/checkpass", checkPass)
 
-	fmt.Println("Listening port :9000")
+	fmt.Println("Listening port : 9000")
 
 	http.ListenAndServe(":9000", r)
 }
