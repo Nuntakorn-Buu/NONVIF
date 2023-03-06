@@ -7,17 +7,17 @@ import (
 )
 
 var (
-	db  *sql.DB
-	err error
+	db_user *sql.DB
+	err     error
 )
 
 func database_user() {
 	// Connect to database
-	db, err = sql.Open("sqlite3", "./loginsystem.db")
+	db_user, err = sql.Open("sqlite3", "./loginsystem.db")
 	if err != nil {
 		log.Fatal(err)
 	}
-	db.SetMaxOpenConns(1)
+	db_user.SetMaxOpenConns(1)
 	log.Println("| Database User | Connection : Successful")
 	fmt.Println(" ")
 }
