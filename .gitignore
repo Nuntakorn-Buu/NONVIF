@@ -19,4 +19,4 @@ emailInfo.go
 # vendor/
 
 # ตัว fresh tmp/runner-build
-*.runner-build
+runner-build
