@@ -17,3 +17,6 @@ emailInfo.go
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+# ตัว fresh tmp/runner-build
+*.runner-build
