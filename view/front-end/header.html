@@ -31,6 +31,12 @@
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 
+  <!-- Gallery - Splide in cameras.html -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.1/dist/css/themes/splide-skyblue.min.css" />
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.0.1/dist/js/splide.min.js"></script>
+
   <style>
     html,
     body,
@@ -49,6 +55,36 @@
 
     .mySlides {
       display: none;
+    }
+
+    .splide {
+      margin: 0 auto;
+    }
+
+    .thumbnails {
+      display: flex;
+      margin: 1rem auto 0;
+      padding: 0;
+      justify-content: center;
+    }
+
+    .thumbnail {
+      width: 150px;
+      height: 150px;
+      overflow: hidden;
+      list-style: none;
+      margin: 0 0.2rem;
+      cursor: pointer;
+      opacity: 0.3;
+    }
+
+    .thumbnail.is-active {
+      opacity: 1;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: auto;
     }
   </style>
 </head>
