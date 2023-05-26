@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"fmt"
 	"net/url"
-	"strings"
 	"strconv"
+	"strings"
 )
 
 type stringStringScan struct {
@@ -123,7 +123,7 @@ func rowMapString(columnNames []string, rows *sql.Rows) (map[string]string, erro
 	return ret, nil
 }
 
-//InsertIntoAnyTable Insert into any table using formData and *sql.DB
+// InsertIntoAnyTable Insert into any table using formData and *sql.DB
 func InsertIntoAnyTable(tableInfo url.Values, db *sql.DB) (primarykeyValue int64, err error) {
 
 	table := tableInfo.Get("table")
@@ -157,7 +157,7 @@ func ReadTable2ColumnSqlit3Trx(table string, trx *sql.Tx) ([]string, error) {
 	defer rows.Close()
 	var dflt_value *string
 	var cid, name, vtype, notnull, pk string
-	
+
 	cols := []string{}
 	for rows.Next() {
 		err = rows.Scan(&cid, &name, &vtype, &notnull, &dflt_value, &pk)
@@ -169,7 +169,7 @@ func ReadTable2ColumnSqlit3Trx(table string, trx *sql.Tx) ([]string, error) {
 	return cols, nil
 }
 
-//ReadTable2Columns Get table all columns as a slice of string
+// ReadTable2Columns Get table all columns as a slice of string
 func ReadTable2ColumnSqlit3(table string, db *sql.DB) ([]string, error) {
 
 	sql := fmt.Sprintf("PRAGMA table_info(%s);", table)
@@ -181,7 +181,7 @@ func ReadTable2ColumnSqlit3(table string, db *sql.DB) ([]string, error) {
 	defer rows.Close()
 	var dflt_value *string
 	var cid, name, vtype, notnull, pk string
-	
+
 	cols := []string{}
 	for rows.Next() {
 		err = rows.Scan(&cid, &name, &vtype, &notnull, &dflt_value, &pk)
@@ -193,7 +193,7 @@ func ReadTable2ColumnSqlit3(table string, db *sql.DB) ([]string, error) {
 	return cols, nil
 }
 
-//ReadTable2Columns Get table all columns as a slice of string
+// ReadTable2Columns Get table all columns as a slice of string
 func ReadTable2Columns(table string, db *sql.DB) ([]string, error) {
 
 	sql := fmt.Sprintf("SHOW COLUMNS FROM `%v`;", table)
@@ -211,14 +211,14 @@ func ReadTable2Columns(table string, db *sql.DB) ([]string, error) {
 	for rows.Next() {
 		err = rows.Scan(&vfield, &vtype, &vnull, &vkey, &vdefault, &vextra)
 		if err != nil {
-			return nil,err
+			return nil, err
 		}
 		cols = append(cols, vfield)
 	}
 	return cols, nil
 }
 
-//Finsert Insert using sql query, return LastInsertId,RowsAffected, Error
+// Finsert Insert using sql query, return LastInsertId,RowsAffected, Error
 func FinsertTrx(sql string, valAray []string, trx *sql.Tx) (int64, int64, error) {
 
 	stmt, err := trx.Prepare(sql)
@@ -247,7 +247,7 @@ func FinsertTrx(sql string, valAray []string, trx *sql.Tx) (int64, int64, error)
 	return lrid, lcount, nil
 }
 
-//Finsert Insert using sql query, return LastInsertId,RowsAffected, Error
+// Finsert Insert using sql query, return LastInsertId,RowsAffected, Error
 func Finsert(sql string, valAray []string, db *sql.DB) (int64, int64, error) {
 
 	stmt, err := db.Prepare(sql)
@@ -255,7 +255,7 @@ func Finsert(sql string, valAray []string, db *sql.DB) (int64, int64, error) {
 
 		return 0, 0, err
 	}
-	
+
 	defer stmt.Close()
 	v := make([]interface{}, len(valAray))
 	for i, val := range valAray {
@@ -273,7 +273,7 @@ func Finsert(sql string, valAray []string, db *sql.DB) (int64, int64, error) {
 	return lrid, lcount, nil
 }
 
-//UpdateByValAray ...
+// UpdateByValAray ...
 func UpdateByValAray(sql string, valAray []string, db *sql.DB) (rowsAfftected int64, err error) {
 
 	stmt, err := db.Prepare(sql)
@@ -295,7 +295,7 @@ func UpdateByValAray(sql string, valAray []string, db *sql.DB) (rowsAfftected in
 	return
 }
 
-//Form2KeyValueSlice Set form value and Get keyList, valueList separately
+// Form2KeyValueSlice Set form value and Get keyList, valueList separately
 func Form2KeyValueSlice(form map[string][]string, colList []string) (keyList []string, valList []string) {
 
 	fmap := make(map[string]string)
@@ -305,7 +305,7 @@ func Form2KeyValueSlice(form map[string][]string, colList []string) (keyList []s
 	}
 
 	for _, colName := range colList {
-		
+
 		var cval = ""
 		if colval, ok := fmap[colName]; ok {
 			//fmt.Printf("%v-> %v exist value = %v\n", i, colName, colval)
@@ -322,7 +322,7 @@ func Form2KeyValueSlice(form map[string][]string, colList []string) (keyList []s
 	return
 }
 
-//InsertQueryBuilder Get raw sql query using key value pair and table name
+// InsertQueryBuilder Get raw sql query using key value pair and table name
 func InsertQueryBuilder(keyVal []string, tableName string) string {
 
 	sb := &strings.Builder{}
@@ -347,7 +347,7 @@ func InsertQueryBuilder(keyVal []string, tableName string) string {
 
 }
 
-//UpdateQueryBuilder ...
+// UpdateQueryBuilder ...
 func UpdateQueryBuilder(keyVal []string, tableName string, whereCondition string) (sql string) {
 
 	sb := &strings.Builder{}
@@ -362,7 +362,7 @@ func UpdateQueryBuilder(keyVal []string, tableName string, whereCondition string
 	return
 }
 
-//FieldByValue Get one field_value using where clause
+// FieldByValue Get one field_value using where clause
 func FieldByValue(table, fieldName, where string, db *sql.DB) string {
 
 	sql := fmt.Sprintf("SELECT %v FROM `%v` WHERE %v;", fieldName, table, where)
@@ -375,7 +375,7 @@ func FieldByValue(table, fieldName, where string, db *sql.DB) string {
 	return vfield
 }
 
-//RawSQL Update using raq sql query,if query executed return true, otherwise false
+// RawSQL Update using raq sql query,if query executed return true, otherwise false
 func RawSQL(sql string, db *sql.DB) bool {
 
 	stmt, err := db.Prepare(sql)
@@ -403,7 +403,7 @@ func RawSQL(sql string, db *sql.DB) bool {
 	return false
 }
 
-//CheckCount Get row count using where condition
+// CheckCount Get row count using where condition
 func CheckCount(table, where string, db *sql.DB) (count int64) {
 
 	sql := fmt.Sprintf("SELECT count(*)as cnt FROM %v WHERE %v;", table, where)
@@ -415,7 +415,7 @@ func CheckCount(table, where string, db *sql.DB) (count int64) {
 	return
 }
 
-//GetAllRowsByQuery Get all table rows using raw sql query
+// GetAllRowsByQuery Get all table rows using raw sql query
 func GetAllRowsByQuery(sql string, db *sql.DB) ([]map[string]interface{}, error) {
 
 	rows, err := db.Query(sql)
@@ -428,7 +428,7 @@ func GetAllRowsByQuery(sql string, db *sql.DB) ([]map[string]interface{}, error)
 
 	rc := newMapStringScan(columnNames)
 	tableData := make([]map[string]interface{}, 0)
-	
+
 	for rows.Next() {
 
 		err := rc.Update(rows)
@@ -466,7 +466,7 @@ func InsertUpdate(form url.Values, db *sql.DB) string {
 	}
 
 	keyAray, valAray := Form2KeyValueSlice(form, dbColList)
-	
+
 	if todo == "update" {
 		whereCondition := fmt.Sprintf("%s='%v'", primaryKeyField, id) //if always id then we may avoid it
 		sql := UpdateQueryBuilder(keyAray, tableName, whereCondition)
@@ -477,7 +477,7 @@ func InsertUpdate(form url.Values, db *sql.DB) string {
 			return message
 		}
 		message = "OK"
-		
+
 	} else if todo == "insert" {
 
 		sql := InsertQueryBuilder(keyAray, tableName)
