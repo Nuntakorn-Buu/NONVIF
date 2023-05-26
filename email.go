@@ -5,8 +5,8 @@ import (
 	"net/smtp"
 )
 
-var FromEmail = "62050553@go.buu.ac.th" // แก้ไขเป็นที่อยู่อีเมล์ Gmail ของเรา
-var EmailPassword = "gmxyuycyfaaeywwe"  // แก้ไขเป็นรหัสผ่านของบัญชี Gmail ของเรา
+var FromEmail = "your.email@gmail.com"                      // แก้ไขเป็นที่อยู่อีเมล์ Gmail ของเรา
+var EmailPassword = "รหัสที่ได้รับจากการทำการยืนยันขั้นสูง" // แก้ไขเป็นรหัสผ่านของบัญชี Gmail ของเรา
 // หากเป็นบัญชีที่ใช้งาน"การยืนยันขั้นสูง" (2-Step Verification)
 // ให้หารหัสจาก Link = https://nuntakorn-sp.notion.site/Problem-Send-Email-cb36c73588ca40de89d997e06581f017
 
