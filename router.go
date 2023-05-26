@@ -92,7 +92,13 @@ func forgotPassAuth(w http.ResponseWriter, r *http.Request) {
 	if len(userEmail) > 0 {
 		isEmail = userEmail[0]["Email"].(string)
 		if email == isEmail {
-			err := fotgotAuthView.Template.Execute(w, "Check Your Email")
+			type Data struct {
+				Code string
+			}
+			data := Data{
+				Code: strconv.Itoa(randomNUM),
+			}
+			err := fotgotAuthView.Template.Execute(w, data)
 			emailSend(isEmail)
 			FetchError(err)
 		}
@@ -113,12 +119,17 @@ func forgotCodeVerify(w http.ResponseWriter, r *http.Request) {
 	codeint, err := strconv.ParseInt(codeSt, 10, 64)
 	FetchError(err)
 	if randomNUM == int(codeint) {
-		err := updatePassView.Template.Execute(w, nil)
+		data := struct {
+			Code int
+		}{
+			Code: randomNUM,
+		}
+		err := updatePassView.Template.Execute(w, data)
 		FetchError(err)
 	} else {
-		fmt.Println("No")
+		http.Redirect(w, r, "/forgot_pass", http.StatusSeeOther)
+		fmt.Println("-------------------- | No")
 	}
-
 }
 
 // API Check Password
@@ -259,17 +270,3 @@ func notFount(w http.ResponseWriter, _ *http.Request) {
 	err := notFountView.Template.Execute(w, nil)
 	FetchError(err)
 }
-
-// Note สิ่งที่แก้
-
-// API not Fount page
-// func notFount(w http.ResponseWriter, r *http.Request) {
-// 	err := notFountView.Template.Execute(w, nil)
-// 	FetchError(err)
-// }
-
-// API forgot Password
-// func forgotPass(w http.ResponseWriter, r *http.Request) {
-// 	err := forgotPassView.Template.Execute(w, nil)
-// 	FetchError(err)
-// }
