@@ -12,6 +12,13 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
+// Config Cam
+const (
+	cam_user = "admin"
+	cam_pass = "admin"
+	cam_ip   = "10.20.3.xx:8080"
+)
+
 // สร้างตัวแปรที่จะเก็บข้อมูล
 var store = sessions.NewCookieStore([]byte("secret-password"))
 
