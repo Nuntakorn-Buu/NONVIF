@@ -42,8 +42,8 @@ func main() {
 	updatePassView = view.NewView("view/front-end/updatepass.html")
 
 	r := mux.NewRouter()
+	r.PathPrefix("/asset/").Handler(http.StripPrefix("/asset/", http.FileServer(http.Dir("view/front-end/asset"))))
 	r.NotFoundHandler = http.HandlerFunc(notFount)
-	r.HandleFunc("/asset/", assetHandler)
 	r.HandleFunc("/login", login)
 	r.HandleFunc("/loginauth", loginAuth)
 	r.HandleFunc("/", home)
