@@ -270,3 +270,8 @@ func notFount(w http.ResponseWriter, _ *http.Request) {
 	err := notFountView.Template.Execute(w, nil)
 	FetchError(err)
 }
+
+// API Handler Asset
+func assetHandler(w http.ResponseWriter, r *http.Request) {
+	http.StripPrefix("/asset/", http.FileServer(http.Dir("view/front-end/asset"))).ServeHTTP(w, r)
+}
