@@ -26,6 +26,12 @@ var (
 	updatePassView      *view.View
 )
 
+// สร้างตัวแปรเก็บข้อมูลกล้อง
+var cameraURLs = []string{}
+
+// สร้างตัวแปรเก็บข้อมูลเมตา sensor
+var cameraSensors = []string{}
+
 // สร้าง API ต่างๆ
 // API Login
 func login(w http.ResponseWriter, r *http.Request) {
@@ -165,12 +171,15 @@ func cameras(w http.ResponseWriter, r *http.Request) {
 	FetchError(err)
 	_, ok := session.Values["username"]
 	if ok {
-		err := camerasView.Template.Execute(w, nil)
+		err := camerasView.Template.Execute(w, struct {
+			CameraURLs []string
+		}{
+			CameraURLs: cameraURLs,
+		})
 		FetchError(err)
 	} else {
 		http.Redirect(w, r, "/login", http.StatusSeeOther)
 	}
-
 }
 
 // API Dashboard page
@@ -179,7 +188,11 @@ func dashboard(w http.ResponseWriter, r *http.Request) {
 	FetchError(err)
 	_, ok := session.Values["username"]
 	if ok {
-		err := dashboardView.Template.Execute(w, nil)
+		err := dashboardView.Template.Execute(w, struct {
+			CameraSensors []string
+		}{
+			CameraSensors: cameraSensors,
+		})
 		FetchError(err)
 	} else {
 		http.Redirect(w, r, "/login", http.StatusSeeOther)
@@ -269,4 +282,44 @@ func logout(w http.ResponseWriter, r *http.Request) {
 func notFount(w http.ResponseWriter, _ *http.Request) {
 	err := notFountView.Template.Execute(w, nil)
 	FetchError(err)
+}
+
+// API เพิ่มกล้อง
+func addCamera(w http.ResponseWriter, r *http.Request) {
+	cameraURL := r.FormValue("cameraURL")
+	cameraURLs = append(cameraURLs, cameraURL)
+}
+
+// API ลบกล้อง
+func removeCamera(w http.ResponseWriter, r *http.Request) {
+	cameraURL := r.FormValue("cameraURL")
+	for i, url := range cameraURLs {
+		if url == cameraURL {
+			cameraURLs = append(cameraURLs[:i], cameraURLs[i+1:]...)
+			break
+		}
+	}
+
+	// ส่งตอบกลับว่าลบกล้องสำเร็จ
+	w.WriteHeader(http.StatusOK)
+}
+
+// API เพิ่มกล้อง
+func addCameraSensor(w http.ResponseWriter, r *http.Request) {
+	cameraSensor := r.FormValue("cameraSensor")
+	cameraSensors = append(cameraSensors, cameraSensor)
+}
+
+// API ลบกล้อง
+func removeCameraSensor(w http.ResponseWriter, r *http.Request) {
+	cameraSensor := r.FormValue("cameraSensor")
+	for i, url := range cameraSensors {
+		if url == cameraSensor {
+			cameraSensors = append(cameraSensors[:i], cameraSensors[i+1:]...)
+			break
+		}
+	}
+
+	// ส่งตอบกลับว่าลบกล้องสำเร็จ
+	w.WriteHeader(http.StatusOK)
 }

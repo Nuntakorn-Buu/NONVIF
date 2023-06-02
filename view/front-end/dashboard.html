@@ -6,592 +6,97 @@
     <div class="w3-container" style="margin-top: 50px;">
 
         <!-- Details Dashboard -->
-        <div class="w3-container w3-padding-32">
+        <div class="w3-container w3-padding-16">
             <h1 class="w3-text-white" style="text-shadow:2px 2px 0 rgb(0, 0, 0)">
                 <b>Dashboard : </b>
                 <i class="fa-solid fa-gauge-high w3-text-pink"></i>
             </h1>
         </div>
-
-        <!-- Metadata -->
-
-        <!-- Cam 1 -->
-        <div id="cam1">
-            <h3 class="w3-text-white w3-border-bottom w3-border-light-grey w3-padding-16 w3-xxlarge"
-                style="text-shadow:2px 2px 0 rgb(0, 0, 0)"><b>Camera : 1 </b>&nbsp;
-                <i class="fa-solid fa-camera w3-text-pink"></i>
-            </h3>
-            <div class=" w3-row-padding">
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Video File type
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Stream duration
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Date / Time
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame Height
-                        </div>
-                    </div>
-                </div>
+        <div class="w3-center w3-xlarge">
+            <div class="w3-padding-16">
+                <input type="text" id="camera-sensor-input" placeholder="Camera URL Sensor">
+                <button
+                    class="w3-bar-item w3-button w3-green w3-hover-pink w3-text-white w3-round-xlarge w3-large w3-card-2"
+                    onclick="addCameraSensor()">Add Camera</button>
             </div>
-            <div class="w3-row-padding">
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame Wide
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Data Rate
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Bit rate
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame rate
-                        </div>
-                    </div>
-                </div>
+            <div id="camera-stream-sensor" class="w3-padding"></div>
+            <!-- Display the IP camera video using an iframe -->
+            {{range .CameraSensors}}
+            <div class="w3-padding">
+                <button
+                    class="w3-bar-item w3-button w3-blue w3-hover-pink w3-text-white w3-round-xlarge w3-large w3-card-2"
+                    onclick="showCameraSensor('{{.}}')">{{.}}</button>
+                <button
+                    class="w3-bar-item w3-button w3-red w3-hover-pink w3-text-white w3-round-xlarge w3-large w3-card-2"
+                    onclick="removeCameraSensor('{{.}}')">Remove</button>
             </div>
+            {{end}}
         </div>
-
-        <!-- End Cam 1 -->
-
-        <!-- Cam 2 -->
-        <div id="cam2">
-            <h3 class="w3-text-white w3-border-bottom w3-border-light-grey w3-padding-16 w3-xxlarge"
-                style="text-shadow:2px 2px 0 rgb(0, 0, 0)"><b>Camera : 2 </b>&nbsp;
-                <i class="fa-solid fa-camera w3-text-pink"></i>
-            </h3>
-            <div class=" w3-row-padding">
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Video File type
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Stream duration
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Date / Time
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame Height
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="w3-row-padding">
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame Wide
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Data Rate
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Bit rate
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame rate
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Cam 2 -->
-
-        <!-- Cam 3 -->
-        <div id="cam3">
-            <h3 class="w3-text-white w3-border-bottom w3-border-light-grey w3-padding-16 w3-xxlarge"
-                style="text-shadow:2px 2px 0 rgb(0, 0, 0)"><b>Camera : 3 </b>&nbsp;
-                <i class="fa-solid fa-camera w3-text-pink"></i>
-            </h3>
-            <div class=" w3-row-padding">
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Video File type
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Stream duration
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Date / Time
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame Height
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="w3-row-padding">
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame Wide
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Data Rate
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Bit rate
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame rate
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Cam 3 -->
-
-        <!-- Cam 4 -->
-        <div id="cam4">
-            <h3 class="w3-text-white w3-border-bottom w3-border-light-grey w3-padding-16 w3-xxlarge"
-                style="text-shadow:2px 2px 0 rgb(0, 0, 0)"><b>Camera : 4 </b>&nbsp;
-                <i class="fa-solid fa-camera w3-text-pink"></i>
-            </h3>
-            <div class=" w3-row-padding">
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Video File type
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Stream duration
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Date / Time
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame Height
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="w3-row-padding">
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame Wide
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Data Rate
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Bit rate
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame rate
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Cam 4 -->
-
-        <!-- Cam 5 -->
-        <div id="cam5">
-            <h3 class="w3-text-white w3-border-bottom w3-border-light-grey w3-padding-16 w3-xxlarge"
-                style="text-shadow:2px 2px 0 rgb(0, 0, 0)"><b>Camera : 5 </b>&nbsp;
-                <i class="fa-solid fa-camera w3-text-pink"></i>
-            </h3>
-            <div class=" w3-row-padding">
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Video File type
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Stream duration
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Date / Time
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame Height
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="w3-row-padding">
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame Wide
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Data Rate
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Bit rate
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame rate
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Cam 5 -->
-
-        <!-- Cam 6 -->
-        <div id="cam6">
-            <h3 class="w3-text-white w3-border-bottom w3-border-light-grey w3-padding-16 w3-xxlarge"
-                style="text-shadow:2px 2px 0 rgb(0, 0, 0)"><b>Camera : 6 </b>&nbsp;
-                <i class="fa-solid fa-camera w3-text-pink"></i>
-            </h3>
-            <div class=" w3-row-padding">
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Video File type
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Stream duration
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Date / Time
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame Height
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="w3-row-padding">
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame Wide
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Data Rate
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Bit rate
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame rate
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Cam 6 -->
-
-        <!-- Cam 7 -->
-        <div id="cam7">
-            <h3 class="w3-text-white w3-border-bottom w3-border-light-grey w3-padding-16 w3-xxlarge"
-                style="text-shadow:2px 2px 0 rgb(0, 0, 0)"><b>Camera : 7 </b>&nbsp;
-                <i class="fa-solid fa-camera w3-text-pink"></i>
-            </h3>
-            <div class=" w3-row-padding">
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Video File type
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Stream duration
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Date / Time
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame Height
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="w3-row-padding">
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame Wide
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Data Rate
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Bit rate
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame rate
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Cam 7 -->
-
-        <!-- Cam 8 -->
-        <div id="cam8">
-            <h3 class="w3-text-white w3-border-bottom w3-border-light-grey w3-padding-16 w3-xxlarge"
-                style="text-shadow:2px 2px 0 rgb(0, 0, 0)"><b>Camera : 8 </b>&nbsp;
-                <i class="fa-solid fa-camera w3-text-pink"></i>
-            </h3>
-            <div class=" w3-row-padding">
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Video File type
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Stream duration
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Date / Time
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame Height
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="w3-row-padding">
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame Wide
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Data Rate
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Bit rate
-                        </div>
-                    </div>
-                </div>
-                <div class="w3-col l3 m6 w3-margin-bottom">
-                    <div class="w3-teal w3-round-xlarge" style="height: 300px; text-shadow:2px 2px 0 rgb(80, 80, 80);">
-                        <div class="w3-padding-large w3-padding-top-24 w3-xlarge">
-                            Frame rate
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Cam 8 -->
-
-        <!-- End Metadata -->
-
     </div>
 </div>
 <!-- End Dashboard -->
 
-<!-- Footer -->
-<div class="w3-bottom">
-    <div class="w3-center">
-        <div class="w3-bar w3-black">
-            <a href="#" class="w3-bar-item w3-button">&laquo;</a>
-            <a href="#cam1" class="w3-button">1</a>
-            <a href="#cam2" class="w3-button">2</a>
-            <a href="#cam3" class="w3-button">3</a>
-            <a href="#cam4" class="w3-button">4</a>
-            <a href="#cam5" class="w3-button">5</a>
-            <a href="#cam6" class="w3-button">6</a>
-            <a href="#cam7" class="w3-button">7</a>
-            <a href="#cam8" class="w3-button">8</a>
-            <a href="#" class="w3-button">&raquo;</a>
-        </div>
-    </div>
-</div>
-<!-- End Footer -->
+<script>
+    function showCameraSensor(cameraSensor) {
+        var iframe = document.createElement("iframe");
+        iframe.src = cameraSensor;
+        iframe.className = "w3-card-4 w3-round-xlarge";
+        iframe.width = "1440px";
+        iframe.height = "1080px";
+        iframe.frameBorder = "0";
+        document.getElementById("camera-stream-sensor").innerHTML = "";
+        document.getElementById("camera-stream-sensor").appendChild(iframe);
+    }
+
+    function addCameraSensor() {
+        var cameraSensor = document.getElementById("camera-sensor-input").value;
+        if (cameraSensor) {
+            var cameraList = document.getElementById("camera-stream-sensor");
+            var button = document.createElement("button");
+            button.className = "w3-bar-item w3-button w3-blue w3-hover-pink w3-text-white w3-round-xlarge w3-large w3-card-2";
+            button.innerHTML = cameraSensor;
+            button.onclick = function () {
+                showCamera(cameraSensor);
+            };
+            cameraList.appendChild(button);
+            document.getElementById("camera-sensor-input").value = "";
+
+            // ส่งข้อมูลไปยัง API เพิ่มกล้อง
+            fetch("/add_camera_sensor", {
+                method: "POST",
+                body: new URLSearchParams({
+                    cameraSensor: cameraSensor
+                })
+            });
+        }
+        // เพิ่มโค้ดรีเฟรชหน้าเว็บ
+        location.reload();
+    }
+
+    function removeCameraSensor(cameraSensor) {
+        // ส่งข้อมูลไปยัง API ลบกล้อง
+        fetch("/remove_camera_sensor", {
+            method: "POST",
+            body: new URLSearchParams({
+                cameraSensor: cameraSensor
+            })
+        }).then(function (response) {
+            if (response.ok) {
+                // ลบปุ่มกล้องออกจากหน้าเว็บ
+                var cameraList = document.getElementById("camera-stream-sensor");
+                var buttons = cameraList.getElementsByTagName("button");
+                for (var i = 0; i < buttons.length; i++) {
+                    if (buttons[i].innerHTML === cameraSensor) {
+                        buttons[i].parentNode.removeChild(buttons[i]);
+                        break;
+                    }
+                }
+            }
+        });
+        // เพิ่มโค้ดรีเฟรชหน้าเว็บ
+        location.reload();
+    }
+</script>
 
 </div>
 </body>

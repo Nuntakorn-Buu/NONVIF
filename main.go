@@ -13,11 +13,13 @@ import (
 )
 
 // Config Cam
-const (
-	cam_user = "admin"
-	cam_pass = "admin"
-	cam_ip   = "10.20.3.xx:8080"
-)
+// const ค่าคงที่ (constant)
+// const (
+// 	cam_user   = "admin"
+// 	cam_pass   = "admin"
+// 	cam_ip     = "http://10.20.3.39:8080/video"
+// 	cam_sensor = "http://10.20.3.39:8080/sensors.html"
+// )
 
 // สร้างตัวแปรที่จะเก็บข้อมูล
 var store = sessions.NewCookieStore([]byte("secret-password"))
@@ -58,6 +60,10 @@ func main() {
 	r.HandleFunc("/forgot_pass_auth", forgotPassAuth)
 	r.HandleFunc("/code_verify", forgotCodeVerify)
 	r.HandleFunc("/checkpass", checkPass)
+	r.HandleFunc("/add_camera", addCamera).Methods("POST")
+	r.HandleFunc("/remove_camera", removeCamera).Methods("POST")
+	r.HandleFunc("/add_camera_sensor", addCameraSensor).Methods("POST")
+	r.HandleFunc("/remove_camera_sensor", removeCameraSensor).Methods("POST")
 
 	fmt.Println("Listening port : 9000")
 

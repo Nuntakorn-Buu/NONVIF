@@ -6,15 +6,97 @@
     <div class="w3-container" style="margin-top: 50px;">
 
         <!-- Details Camera -->
-        <div class="w3-container w3-padding-32">
+        <div class="w3-container w3-padding-16">
             <h1 class="w3-text-white" style="text-shadow:2px 2px 0 rgb(0, 0, 0)">
-                <b>Cameras : </b>
+                <b>Cameras :</b>
                 <i class="fa-solid fa-camera w3-text-pink"></i>
             </h1>
+        </div>
+        <div class="w3-center w3-xlarge">
+            <div class="w3-padding-16">
+                <input type="text" id="camera-url-input" placeholder="Camera URL">
+                <button
+                    class="w3-bar-item w3-button w3-green w3-hover-pink w3-text-white w3-round-xlarge w3-large w3-card-2"
+                    onclick="addCamera()">Add Camera</button>
+            </div>
+            <div id="camera-stream" class="w3-padding"></div>
+            <!-- Display the IP camera video using an iframe -->
+            {{range .CameraURLs}}
+            <div class="w3-padding">
+                <button
+                    class="w3-bar-item w3-button w3-blue w3-hover-pink w3-text-white w3-round-xlarge w3-large w3-card-2"
+                    onclick="showCamera('{{.}}')">{{.}}</button>
+                <button
+                    class="w3-bar-item w3-button w3-red w3-hover-pink w3-text-white w3-round-xlarge w3-large w3-card-2"
+                    onclick="removeCamera('{{.}}')">Remove</button>
+            </div>
+            {{end}}
         </div>
     </div>
 </div>
 <!-- End Dashboard -->
+
+<script>
+    function showCamera(cameraURL) {
+        var iframe = document.createElement("iframe");
+        iframe.src = cameraURL;
+        iframe.className = "w3-card-4 w3-round-xlarge";
+        iframe.width = "1600px";
+        iframe.height = "1200px";
+        iframe.frameBorder = "0";
+        document.getElementById("camera-stream").innerHTML = "";
+        document.getElementById("camera-stream").appendChild(iframe);
+    }
+
+    function addCamera() {
+        var cameraURL = document.getElementById("camera-url-input").value;
+        if (cameraURL) {
+            var cameraList = document.getElementById("camera-stream");
+            var button = document.createElement("button");
+            button.className = "w3-bar-item w3-button w3-blue w3-hover-pink w3-text-white w3-round-xlarge w3-large w3-card-2";
+            button.innerHTML = cameraURL;
+            button.onclick = function () {
+                showCamera(cameraURL);
+            };
+            cameraList.appendChild(button);
+            document.getElementById("camera-url-input").value = "";
+
+            // ส่งข้อมูลไปยัง API เพิ่มกล้อง
+            fetch("/add_camera", {
+                method: "POST",
+                body: new URLSearchParams({
+                    cameraURL: cameraURL
+                })
+            });
+        }
+        // เพิ่มโค้ดรีเฟรชหน้าเว็บ
+        location.reload();
+    }
+
+    function removeCamera(cameraURL) {
+        // ส่งข้อมูลไปยัง API ลบกล้อง
+        fetch("/remove_camera", {
+            method: "POST",
+            body: new URLSearchParams({
+                cameraURL: cameraURL
+            })
+        }).then(function (response) {
+            if (response.ok) {
+                // ลบปุ่มกล้องออกจากหน้าเว็บ
+                var cameraList = document.getElementById("camera-stream");
+                var buttons = cameraList.getElementsByTagName("button");
+                for (var i = 0; i < buttons.length; i++) {
+                    if (buttons[i].innerHTML === cameraURL) {
+                        buttons[i].parentNode.removeChild(buttons[i]);
+                        break;
+                    }
+                }
+            }
+        });
+        // เพิ่มโค้ดรีเฟรชหน้าเว็บ
+        location.reload();
+    }
+</script>
 
 </div>
 </body>
