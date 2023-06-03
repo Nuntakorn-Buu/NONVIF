@@ -12,21 +12,13 @@ import (
 	_ "github.com/mattn/go-sqlite3"
 )
 
-// Config Cam
-// const ค่าคงที่ (constant)
-// const (
-// 	cam_user   = "admin"
-// 	cam_pass   = "admin"
-// 	cam_ip     = "http://10.20.3.39:8080/video"
-// 	cam_sensor = "http://10.20.3.39:8080/sensors.html"
-// )
-
 // สร้างตัวแปรที่จะเก็บข้อมูล
 var store = sessions.NewCookieStore([]byte("secret-password"))
 
 // สร้างฟังก์ชั่นสำหรับเรียกใช้ database
 func init() {
 	database_user()
+	database_cameras()
 }
 
 func main() {

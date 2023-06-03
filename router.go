@@ -2,7 +2,9 @@ package main
 
 //ทำการ import library ที่จำเป็น
 import (
+	"database/sql"
 	"fmt"
+	"log"
 	"net/http"
 	"project-nonvif/view"
 	"strconv"
@@ -171,7 +173,33 @@ func cameras(w http.ResponseWriter, r *http.Request) {
 	FetchError(err)
 	_, ok := session.Values["username"]
 	if ok {
-		err := camerasView.Template.Execute(w, struct {
+		// ดึงข้อมูลกล้องจากฐานข้อมูล cameras
+		rows, err := db_cameras.Query("SELECT url FROM cameras")
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		defer rows.Close()
+
+		var cameraURLs []string
+		for rows.Next() {
+			var url sql.NullString
+			err = rows.Scan(&url)
+			if err != nil {
+				log.Println(err)
+				return
+			}
+			if url.Valid {
+				cameraURLs = append(cameraURLs, url.String)
+			} else {
+				cameraURLs = append(cameraURLs, "")
+			}
+		}
+		if err = rows.Err(); err != nil {
+			log.Println(err)
+			return
+		}
+		err = camerasView.Template.Execute(w, struct {
 			CameraURLs []string
 		}{
 			CameraURLs: cameraURLs,
@@ -188,7 +216,34 @@ func dashboard(w http.ResponseWriter, r *http.Request) {
 	FetchError(err)
 	_, ok := session.Values["username"]
 	if ok {
-		err := dashboardView.Template.Execute(w, struct {
+		// ดึงข้อมูลเซ็นเซอร์จากฐานข้อมูล cameras
+		rows, err := db_cameras.Query("SELECT sensor FROM cameras")
+		if err != nil {
+			log.Println(err)
+			return
+		}
+		defer rows.Close()
+
+		var cameraSensors []string
+		for rows.Next() {
+			var sensor sql.NullString
+			err := rows.Scan(&sensor)
+			if err != nil {
+				log.Println(err)
+				return
+			}
+			if sensor.Valid {
+				cameraSensors = append(cameraSensors, sensor.String)
+			} else {
+				cameraSensors = append(cameraSensors, "")
+			}
+		}
+		if err := rows.Err(); err != nil {
+			log.Println(err)
+			return
+		}
+
+		err = dashboardView.Template.Execute(w, struct {
 			CameraSensors []string
 		}{
 			CameraSensors: cameraSensors,
@@ -197,7 +252,6 @@ func dashboard(w http.ResponseWriter, r *http.Request) {
 	} else {
 		http.Redirect(w, r, "/login", http.StatusSeeOther)
 	}
-
 }
 
 // API About page
@@ -284,42 +338,67 @@ func notFount(w http.ResponseWriter, _ *http.Request) {
 	FetchError(err)
 }
 
-// API เพิ่มกล้อง
+// API Add Camera
 func addCamera(w http.ResponseWriter, r *http.Request) {
 	cameraURL := r.FormValue("cameraURL")
-	cameraURLs = append(cameraURLs, cameraURL)
+
+	// เพิ่มข้อมูลกล้องลงในฐานข้อมูล cameras
+	insertStmt := `INSERT INTO cameras (url) VALUES (?)`
+	_, err := db_cameras.Exec(insertStmt, cameraURL)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	// ส่งตอบกลับว่าเพิ่มกล้องสำเร็จ
+	w.WriteHeader(http.StatusOK)
 }
 
-// API ลบกล้อง
+// API Remove Camera
 func removeCamera(w http.ResponseWriter, r *http.Request) {
 	cameraURL := r.FormValue("cameraURL")
-	for i, url := range cameraURLs {
-		if url == cameraURL {
-			cameraURLs = append(cameraURLs[:i], cameraURLs[i+1:]...)
-			break
-		}
+
+	// ลบข้อมูลกล้องออกจากฐานข้อมูล cameras
+	deleteStmt := `DELETE FROM cameras WHERE url = ?`
+	_, err := db_cameras.Exec(deleteStmt, cameraURL)
+	if err != nil {
+		log.Println(err)
+		return
 	}
 
 	// ส่งตอบกลับว่าลบกล้องสำเร็จ
 	w.WriteHeader(http.StatusOK)
 }
 
-// API เพิ่มกล้อง
+// API Add Camera Sensor
 func addCameraSensor(w http.ResponseWriter, r *http.Request) {
-	cameraSensor := r.FormValue("cameraSensor")
-	cameraSensors = append(cameraSensors, cameraSensor)
+	sensor := r.FormValue("cameraSensor")
+	cameraSensors = append(cameraSensors, sensor)
+
+	// เพิ่มข้อมูลเซ็นเซอร์ลงในฐานข้อมูล cameras
+	insertStmt := `INSERT INTO cameras (sensor) VALUES (?)`
+	_, err := db_cameras.Exec(insertStmt, sensor)
+	if err != nil {
+		log.Println(err)
+		return
+	}
 }
 
-// API ลบกล้อง
+// API Remove Camera Sensor
 func removeCameraSensor(w http.ResponseWriter, r *http.Request) {
-	cameraSensor := r.FormValue("cameraSensor")
-	for i, url := range cameraSensors {
-		if url == cameraSensor {
+	sensor := r.FormValue("cameraSensor")
+	for i, s := range cameraSensors {
+		if s == sensor {
 			cameraSensors = append(cameraSensors[:i], cameraSensors[i+1:]...)
 			break
 		}
 	}
 
-	// ส่งตอบกลับว่าลบกล้องสำเร็จ
-	w.WriteHeader(http.StatusOK)
+	// ลบข้อมูลเซ็นเซอร์ออกจากฐานข้อมูล cameras
+	deleteStmt := `DELETE FROM cameras WHERE sensor = ?`
+	_, err := db_cameras.Exec(deleteStmt, sensor)
+	if err != nil {
+		log.Println(err)
+		return
+	}
 }
