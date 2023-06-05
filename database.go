@@ -32,8 +32,7 @@ func database_cameras() {
 	createTableStmt := `
 		CREATE TABLE IF NOT EXISTS cameras (
 			id INTEGER PRIMARY KEY AUTOINCREMENT,
-			url TEXT,
-			sensor TEXT
+			url TEXT
 		)
 	`
 	_, err = db_cameras.Exec(createTableStmt)

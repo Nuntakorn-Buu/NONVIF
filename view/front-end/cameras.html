@@ -39,7 +39,7 @@
 <script>
     function showCamera(cameraURL) {
         var iframe = document.createElement("iframe");
-        iframe.src = cameraURL;
+        iframe.src = "http://" + cameraURL + "/video";
         iframe.className = "w3-card-4 w3-round-xlarge";
         iframe.width = "1600px";
         iframe.height = "1200px";

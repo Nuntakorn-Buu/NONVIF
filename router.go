@@ -31,9 +31,6 @@ var (
 // สร้างตัวแปรเก็บข้อมูลกล้อง
 var cameraURLs = []string{}
 
-// สร้างตัวแปรเก็บข้อมูลเมตา sensor
-var cameraSensors = []string{}
-
 // สร้าง API ต่างๆ
 // API Login
 func login(w http.ResponseWriter, r *http.Request) {
@@ -217,25 +214,25 @@ func dashboard(w http.ResponseWriter, r *http.Request) {
 	_, ok := session.Values["username"]
 	if ok {
 		// ดึงข้อมูลเซ็นเซอร์จากฐานข้อมูล cameras
-		rows, err := db_cameras.Query("SELECT sensor FROM cameras")
+		rows, err := db_cameras.Query("SELECT url FROM cameras")
 		if err != nil {
 			log.Println(err)
 			return
 		}
 		defer rows.Close()
 
-		var cameraSensors []string
+		var cameraURLs []string
 		for rows.Next() {
-			var sensor sql.NullString
-			err := rows.Scan(&sensor)
+			var url sql.NullString
+			err := rows.Scan(&url)
 			if err != nil {
 				log.Println(err)
 				return
 			}
-			if sensor.Valid {
-				cameraSensors = append(cameraSensors, sensor.String)
+			if url.Valid {
+				cameraURLs = append(cameraURLs, url.String)
 			} else {
-				cameraSensors = append(cameraSensors, "")
+				cameraURLs = append(cameraURLs, "")
 			}
 		}
 		if err := rows.Err(); err != nil {
@@ -244,9 +241,9 @@ func dashboard(w http.ResponseWriter, r *http.Request) {
 		}
 
 		err = dashboardView.Template.Execute(w, struct {
-			CameraSensors []string
+			CameraURLs []string
 		}{
-			CameraSensors: cameraSensors,
+			CameraURLs: cameraURLs,
 		})
 		FetchError(err)
 	} else {
@@ -368,37 +365,4 @@ func removeCamera(w http.ResponseWriter, r *http.Request) {
 
 	// ส่งตอบกลับว่าลบกล้องสำเร็จ
 	w.WriteHeader(http.StatusOK)
-}
-
-// API Add Camera Sensor
-func addCameraSensor(w http.ResponseWriter, r *http.Request) {
-	sensor := r.FormValue("cameraSensor")
-	cameraSensors = append(cameraSensors, sensor)
-
-	// เพิ่มข้อมูลเซ็นเซอร์ลงในฐานข้อมูล cameras
-	insertStmt := `INSERT INTO cameras (sensor) VALUES (?)`
-	_, err := db_cameras.Exec(insertStmt, sensor)
-	if err != nil {
-		log.Println(err)
-		return
-	}
-}
-
-// API Remove Camera Sensor
-func removeCameraSensor(w http.ResponseWriter, r *http.Request) {
-	sensor := r.FormValue("cameraSensor")
-	for i, s := range cameraSensors {
-		if s == sensor {
-			cameraSensors = append(cameraSensors[:i], cameraSensors[i+1:]...)
-			break
-		}
-	}
-
-	// ลบข้อมูลเซ็นเซอร์ออกจากฐานข้อมูล cameras
-	deleteStmt := `DELETE FROM cameras WHERE sensor = ?`
-	_, err := db_cameras.Exec(deleteStmt, sensor)
-	if err != nil {
-		log.Println(err)
-		return
-	}
 }
