@@ -54,6 +54,7 @@ func main() {
 	r.HandleFunc("/checkpass", checkPass)
 	r.HandleFunc("/add_camera", addCamera).Methods("POST")
 	r.HandleFunc("/remove_camera", removeCamera).Methods("POST")
+	r.HandleFunc("/metadatas", metadatas).Methods("POST")
 
 	fmt.Println("Listening port : 9000")
 

@@ -3,11 +3,14 @@ package main
 //ทำการ import library ที่จำเป็น
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"project-nonvif/view"
 	"strconv"
+
+	"github.com/inspii/onvif"
 
 	"github.com/gorilla/sessions"
 )
@@ -196,12 +199,21 @@ func cameras(w http.ResponseWriter, r *http.Request) {
 			log.Println(err)
 			return
 		}
+
 		err = camerasView.Template.Execute(w, struct {
 			CameraURLs []string
 		}{
 			CameraURLs: cameraURLs,
 		})
 		FetchError(err)
+
+		// เรียกใช้ฟังก์ชัน metadatas เพื่อแสดงข้อมูลเมื่อกดปุ่ม Show Data Cameras
+		if r.Method == http.MethodPost {
+			if r.FormValue("action") == "showData" {
+				metadatas(w, r)
+			}
+		}
+
 	} else {
 		http.Redirect(w, r, "/login", http.StatusSeeOther)
 	}
@@ -365,4 +377,42 @@ func removeCamera(w http.ResponseWriter, r *http.Request) {
 
 	// ส่งตอบกลับว่าลบกล้องสำเร็จ
 	w.WriteHeader(http.StatusOK)
+}
+
+// API metadatas
+func metadatas(w http.ResponseWriter, r *http.Request) {
+	cameraURL := r.FormValue("cameraURL")
+	camera := onvif.NewOnvifDevice(cameraURL)
+	camera.Auth("admin", "admin") // "user", "password"
+
+	err := camera.Initialize()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	di, err := camera.Device.GetDeviceInformation()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	users, err := camera.Device.GetUsers()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// สร้างข้อมูล JSON จาก di และ users
+	data := struct {
+		DeviceInformation interface{}
+		Users             interface{}
+	}{
+		DeviceInformation: di,
+		Users:             users,
+	}
+
+	// ส่งข้อมูลกลับไปยังหน้าเว็บในรูปแบบ JSON response
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(data)
 }

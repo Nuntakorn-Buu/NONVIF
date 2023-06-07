@@ -4,7 +4,6 @@
 <!-- Dashboard -->
 <div class="w3-content w3-padding" style="max-width:1564px">
     <div class="w3-container" style="margin-top: 50px;">
-
         <!-- Details Camera -->
         <div class="w3-container w3-padding-16">
             <h1 class="w3-text-white" style="text-shadow:2px 2px 0 rgb(0, 0, 0)">
@@ -32,6 +31,29 @@
             </div>
             {{end}}
         </div>
+        <div class="w3-xlarge w3-text-white">
+            <!-- เพิ่มตัวแปร ID สำหรับแสดงข้อมูล -->
+            <div class="w3-padding-16">
+                <h2 class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-large w3-card-2">Device
+                    Information :</h2>
+                <div id="device-information" class="w3-card-2 w3-round-large w3-padding w3-light-gray">
+                    <p><strong>Manufacturer : </strong> <span id="manufacturer"></span></p>
+                    <p><strong>Model : </strong> <span id="model"></span></p>
+                    <p><strong>Firmware Version : </strong> <span id="firmware-version"></span></p>
+                    <p><strong>Serial Number : </strong> <span id="serial-number"></span></p>
+                    <p><strong>Hardware ID : </strong> <span id="hardware-id"></span></p>
+                </div>
+            </div>
+            <div class="w3-padding-16">
+                <h2 class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-large w3-card-2">Users :</h2>
+                <div id="users" class="w3-card-2 w3-round-large w3-padding w3-light-gray">
+                    <p><strong>Username : </strong> <span id="username"></span></p>
+                    <p><strong>Password : </strong> <span id="password"></span></p>
+                    <p><strong>UserLevel : </strong> <span id="userlevel"></span></p>
+                    <p><strong>Extension : </strong> <span id="extension"></span></p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <!-- End Dashboard -->
@@ -46,6 +68,34 @@
         iframe.frameBorder = "0";
         document.getElementById("camera-stream").innerHTML = "";
         document.getElementById("camera-stream").appendChild(iframe);
+
+        // เรียกใช้ API metadatas
+        fetch("/metadatas", {
+            method: "POST",
+            body: new URLSearchParams({
+                cameraURL: cameraURL
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                // แปลงอ็อบเจ็กต์เป็นสตริง JSON
+                var deviceInformation = JSON.stringify(data.DeviceInformation);
+                var users = JSON.stringify(data.Users);
+                var systemdateandtimes = JSON.stringify(data.SystemDateAndTime);
+
+                // แสดงข้อมูลในหน้าเว็บ
+                document.getElementById("manufacturer").innerText = data.DeviceInformation.Manufacturer;
+                document.getElementById("model").innerText = data.DeviceInformation.Model;
+                document.getElementById("firmware-version").innerText = data.DeviceInformation.FirmwareVersion;
+                document.getElementById("serial-number").innerText = data.DeviceInformation.SerialNumber;
+                document.getElementById("hardware-id").innerText = data.DeviceInformation.HardwareID;
+
+                var user = data.Users.User[0];
+                document.getElementById("username").innerText = user.Username;
+                document.getElementById("password").innerText = user.Password;
+                document.getElementById("userlevel").innerText = user.UserLevel;
+                document.getElementById("extension").innerText = user.Extension;
+            });
     }
 
     function addCamera() {
