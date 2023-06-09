@@ -427,21 +427,37 @@ func metadatas(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	discovery, err := camera.Device.GetDiscoveryMode()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	servicecap, err := camera.Device.GetServiceCapabilities()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
 	// สร้างข้อมูล JSON จาก di,users,dateandtime,cap,hostname และ networkprotocols
 	data := struct {
-		DeviceInformation interface{}
-		Users             interface{}
-		SystemDateAndTime interface{}
-		Capabilities      interface{}
-		Hostname          interface{}
-		NetworkProtocols  interface{}
+		DeviceInformation   interface{}
+		Users               interface{}
+		SystemDateAndTime   interface{}
+		Capabilities        interface{}
+		Hostname            interface{}
+		NetworkProtocols    interface{}
+		DiscoveryMode       interface{}
+		ServiceCapabilities interface{}
 	}{
-		DeviceInformation: di,
-		Users:             users,
-		SystemDateAndTime: dateandtime,
-		Capabilities:      cap,
-		Hostname:          hostname,
-		NetworkProtocols:  networkprotocols,
+		DeviceInformation:   di,
+		Users:               users,
+		SystemDateAndTime:   dateandtime,
+		Capabilities:        cap,
+		Hostname:            hostname,
+		NetworkProtocols:    networkprotocols,
+		DiscoveryMode:       discovery,
+		ServiceCapabilities: servicecap,
 	}
 	fmt.Println("Data From GetDeviceInformation :", di)
 	fmt.Println("")
@@ -454,6 +470,10 @@ func metadatas(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Data From GetHostname :", hostname)
 	fmt.Println("")
 	fmt.Println("Data From GetNetworkProtocols :", networkprotocols)
+	fmt.Println("")
+	fmt.Println("Data From GetDiscoveryMode :", discovery)
+	fmt.Println("")
+	fmt.Println("Data From GetServiceCapabilities :", servicecap)
 	fmt.Println("")
 
 	// ส่งข้อมูลกลับไปยังหน้าเว็บในรูปแบบ JSON response
