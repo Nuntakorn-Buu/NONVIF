@@ -403,14 +403,58 @@ func metadatas(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// สร้างข้อมูล JSON จาก di และ users
+	dateandtime, err := camera.Device.GetSystemDateAndTime()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	cap, err := camera.Device.GetCapabilities()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	hostname, err := camera.Device.GetHostname()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	networkprotocols, err := camera.Device.GetNetworkProtocols()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// สร้างข้อมูล JSON จาก di,users,dateandtime,cap,hostname และ networkprotocols
 	data := struct {
 		DeviceInformation interface{}
 		Users             interface{}
+		SystemDateAndTime interface{}
+		Capabilities      interface{}
+		Hostname          interface{}
+		NetworkProtocols  interface{}
 	}{
 		DeviceInformation: di,
 		Users:             users,
+		SystemDateAndTime: dateandtime,
+		Capabilities:      cap,
+		Hostname:          hostname,
+		NetworkProtocols:  networkprotocols,
 	}
+	fmt.Println("Data From GetDeviceInformation :", di)
+	fmt.Println("")
+	fmt.Println("Data From GetUsers :", users)
+	fmt.Println("")
+	fmt.Println("Data From GetSystemDateAndTime :", dateandtime)
+	fmt.Println("")
+	fmt.Println("Data From GetCapabilities :", cap)
+	fmt.Println("")
+	fmt.Println("Data From GetHostname :", hostname)
+	fmt.Println("")
+	fmt.Println("Data From GetNetworkProtocols :", networkprotocols)
+	fmt.Println("")
 
 	// ส่งข้อมูลกลับไปยังหน้าเว็บในรูปแบบ JSON response
 	w.Header().Set("Content-Type", "application/json")

@@ -1,6 +1,14 @@
 {{template "Header"}}
 {{template "Menu"}}
 
+<style>
+    pre {
+        padding: 10px;
+        border-radius: 5px;
+        overflow: auto;
+    }
+</style>
+
 <!-- Dashboard -->
 <div class="w3-content w3-padding" style="max-width:1564px">
     <div class="w3-container" style="margin-top: 50px;">
@@ -32,10 +40,28 @@
             {{end}}
         </div>
         <div class="w3-xlarge w3-text-white">
-            <!-- เพิ่มตัวแปร ID สำหรับแสดงข้อมูล -->
+            <!-- เพิ่มตัวแปร ID สำหรับแสดงข้อมูล จาก /metadatas -->
+            <!-- แสดงข้อมูลจาก Hostname -->
             <div class="w3-padding-16">
-                <h2 class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-large w3-card-2">Device
-                    Information :</h2>
+                <p class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-card-2">Hostname :</p>
+                <div id="hostname" class="w3-card-2 w3-round-large w3-padding w3-light-gray">
+                    <p><strong>Hostname : </strong> <span id="hostname-name"></span></p>
+                    <p><strong>FromDHCP : </strong> <span id="hostname-fromDHCP"></span></p>
+                </div>
+            </div>
+            <!-- แสดงข้อมูลจาก NetworkProtocols -->
+            <div class="w3-padding-16">
+                <p class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-card-2">
+                    NetworkProtocols :</p>
+                <div id="networkprotocols" class="w3-card-2 w3-round-large w3-padding w3-light-gray">
+                    <p><strong>Name : </strong> <span id="network-name"></span></p>
+                    <p><strong>Enabled : </strong> <span id="network-enabled"></span></p>
+                </div>
+            </div>
+            <!-- แสดงข้อมูลจาก DeviceInformation -->
+            <div class="w3-padding-16">
+                <p class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-card-2">Device
+                    Information :</p>
                 <div id="device-information" class="w3-card-2 w3-round-large w3-padding w3-light-gray">
                     <p><strong>Manufacturer : </strong> <span id="manufacturer"></span></p>
                     <p><strong>Model : </strong> <span id="model"></span></p>
@@ -44,14 +70,26 @@
                     <p><strong>Hardware ID : </strong> <span id="hardware-id"></span></p>
                 </div>
             </div>
+            <!-- แสดงข้อมูลจาก Users -->
             <div class="w3-padding-16">
-                <h2 class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-large w3-card-2">Users :</h2>
+                <p class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-card-2">Users :</p>
                 <div id="users" class="w3-card-2 w3-round-large w3-padding w3-light-gray">
                     <p><strong>Username : </strong> <span id="username"></span></p>
                     <p><strong>Password : </strong> <span id="password"></span></p>
                     <p><strong>UserLevel : </strong> <span id="userlevel"></span></p>
-                    <p><strong>Extension : </strong> <span id="extension"></span></p>
                 </div>
+            </div>
+            <!-- แสดงข้อมูลจาก Capabilities -->
+            <div class="w3-padding-16">
+                <p class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-card-2">Capabilities :
+                </p>
+                <pre id="capabilities" class="w3-card-2 w3-round-large w3-padding w3-light-gray"></pre>
+            </div>
+            <!-- แสดงข้อมูลจาก SystemDateAndTime -->
+            <div class="w3-padding-16">
+                <p class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-card-2">System Date and
+                    Time :</p>
+                <pre id="dateandtime" class="w3-card-2 w3-round-large w3-padding w3-light-gray"></pre>
             </div>
         </div>
     </div>
@@ -78,23 +116,30 @@
         })
             .then(response => response.json())
             .then(data => {
-                // แปลงอ็อบเจ็กต์เป็นสตริง JSON
-                var deviceInformation = JSON.stringify(data.DeviceInformation);
-                var users = JSON.stringify(data.Users);
-                var systemdateandtimes = JSON.stringify(data.SystemDateAndTime);
-
                 // แสดงข้อมูลในหน้าเว็บ
+
+                // แสดงข้อมูลจาก DeviceInformation
                 document.getElementById("manufacturer").innerText = data.DeviceInformation.Manufacturer;
                 document.getElementById("model").innerText = data.DeviceInformation.Model;
                 document.getElementById("firmware-version").innerText = data.DeviceInformation.FirmwareVersion;
                 document.getElementById("serial-number").innerText = data.DeviceInformation.SerialNumber;
                 document.getElementById("hardware-id").innerText = data.DeviceInformation.HardwareID;
-
+                // แสดงข้อมูลจาก Users
                 var user = data.Users.User[0];
                 document.getElementById("username").innerText = user.Username;
                 document.getElementById("password").innerText = user.Password;
                 document.getElementById("userlevel").innerText = user.UserLevel;
-                document.getElementById("extension").innerText = user.Extension;
+                // แสดงข้อมูลจาก SystemDateAndTime
+                document.getElementById("dateandtime").innerText = JSON.stringify(data.SystemDateAndTime, null, 2);
+                // แสดงข้อมูลจาก Capabilities
+                document.getElementById("capabilities").innerText = JSON.stringify(data.Capabilities, null, 2);
+                // แสดงข้อมูลจาก Hostname
+                document.getElementById("hostname-name").innerText = data.Hostname.HostnameInformation.Name;
+                document.getElementById("hostname-fromDHCP").innerText = data.Hostname.HostnameInformation.FromDHCP;
+                // แสดงข้อมูลจาก NetworkProtocols
+                var network = data.NetworkProtocols.NetworkProtocols[0];
+                document.getElementById("network-name").innerText = network.Name;
+                document.getElementById("network-enabled").innerText = network.Enabled;
             });
     }
 
