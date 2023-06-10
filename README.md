@@ -6,6 +6,12 @@
 
 [ENG] : Application of the ONVIF Protocol to support IP camera management and video streaming through websites .
 
+### Project Description !!!
+
+This project is an implementation of the ONVIF protocol on a web interface. It involves creating a web page to support video streaming from an Android application called 'IP Webcam.' This app simulates an IP camera that supports the ONVIF protocol and uses ONVIF protocol functions to retrieve various camera data from IP Webcam and display it on the web page
+
+โครงการนี้เป็นการประยุกต์ใช้โปรโตคอล ONVIF ที่หน้าเว็บไซต์. โดยเป็นการสร้างหน้าเว็บขึ้นมาเพื่อใช้สำหรับรองรับการสตรีมภาพวิดีโอจากแอพพลิเคชันบนแอนดรอย์ ชื่อ "IP Webcam" ซึ่งเป็นแอพที่จำลองกล้องไอพีที่รองรับONVIF Protocol และใช้ Func ของ ONVIF Protocol เพื่อดึงข้อมูลต่าง ๆ กล้องจาก IP Webcam มาแสดงออกที่หน้าเว็บไซต์
+
 ---
 
 ## 🛠 Skills
