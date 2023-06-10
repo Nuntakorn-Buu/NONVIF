@@ -178,13 +178,6 @@ require (
 )
 ```
 
-<details>
-  <summary>คลิกเพื่อแสดง/ซ่อน</summary>
-
-เนื้อหาที่ต้องการซ่อน/แสดง
-
-</details>
-
 ---
 
 ## 📧 Support & Feedback
