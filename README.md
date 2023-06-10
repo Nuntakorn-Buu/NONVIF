@@ -139,8 +139,7 @@ If the `< go run . >` command is successful, you will see the following message 
 
 ---
 
-<details>
-  <summary>📑 Tech Stack</summary>
+## 📑 Tech Stack
 
 #### Backend
 
@@ -178,6 +177,11 @@ require (
     github.com/gorilla/securecookie v1.1.1
 )
 ```
+
+<details>
+  <summary>คลิกเพื่อแสดง/ซ่อน</summary>
+
+เนื้อหาที่ต้องการซ่อน/แสดง
 
 </details>
 
