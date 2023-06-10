@@ -1,76 +1,154 @@
-<p align="center">
-	<img height="300" src="https://github.com/Nuntakorn-Buu/NONVIF/blob/main/view/front-end/asset/images/logo-3.png?raw=true">
-</p>
+![Logo](https://github.com/Nuntakorn-Buu/NONVIF/blob/main/view/front-end/asset/images/logo-5.png?raw=true)
 
-# NONVIF
+# 🗂 NONVIF Project.
 
-- การประยุกต์ใช้โปรโตคอล ONVIF เพื่อรองรับการจัดการกล้องไอพีและการสตรีมวิดีโอผ่านเว็บไซต์ .
-- Application of the ONVIF Protocol to support IP camera management and video streaming through websites .
+[TH] : การประยุกต์ใช้โปรโตคอล ONVIF เพื่อรองรับการจัดการกล้องไอพีและการสตรีมวิดีโอผ่านเว็บไซต์ .
 
-# NONVIF System
-
-## ONVIF Profile T
-
-- Streaming Video
-- Metadata
+[ENG] : Application of the ONVIF Protocol to support IP camera management and video streaming through websites .
 
 ---
 
-## Features Projects
+## 🛠 Skills
 
-- Home page
-- Cameras page
-- Dashboard page
-- About page
-- Portfolio page
-- Add camera
-- Remove camera
-- Signup
-- Login
-- Logout
-- Forget Password
+The essential coding skills required for this project.
+
+- 👉🏻 | Golang
+- 👉🏻 | SQL
+- 👉🏻 | HTML
+- 👉🏻 | CSS
+- 👉🏻 | Javascript
 
 ---
 
-# Details
+## 🔗 Links Documentations
 
-## Recommend
+| Docs             | Link                                                                                                                              |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| ➡️ Dropbox       | ➡️ [LINK](https://www.dropbox.com/sh/jysm351v3pfmnyr/AABIzDHCTdY0mFt5ScdX-Uzba?dl=0)                                              |
+| ➡️ Task List     | ➡️ [LINK](https://nuntakorn-sp.notion.site/1d183abc6dea4b3ba570bf8726195ae0?v=c5632d2adb3d40deaa79cb392fc82038&pvs=4)             |
+| ➡️ Work Plan 1   | ➡️ [LINK](https://www.dropbox.com/scl/fi/c98cdfjwiek2gxylp7h1y/Technical-Report-Non.paper?dl=0&rlkey=99122h15yh6enbrmwwgfkf79g)   |
+| ➡️ Gantt Chart 1 | ➡️ [LINK](https://docs.google.com/spreadsheets/d/1imVBrtQ3R5AznIkBnEeeSc24qYHkcrq0weeTZ88HP44/edit#gid=611801224)                 |
+| ➡️ Work Plan 2   | ➡️ [LINK](https://www.dropbox.com/scl/fi/izdrnq87zf7v8mjhbfntg/Work-Plan-Work-Log-Non.paper?dl=0&rlkey=dqaetj5gil8auaxsuqumg0p7s) |
+| ➡️ Gantt Chart 2 | ➡️ [LINK](https://docs.google.com/spreadsheets/d/1imVBrtQ3R5AznIkBnEeeSc24qYHkcrq0weeTZ88HP44/edit#gid=902234290)                 |
+
+---
+
+## 📢 Features Projects
+
+| Pages             | Systemes                |
+| ----------------- | ----------------------- |
+| ➡️ Home page      | ➡️ Signup               |
+| ➡️ Cameras page   | ➡️ Login                |
+| ➡️ Dashboard page | ➡️ Logout               |
+| ➡️ About page     | ➡️ Forget Password      |
+| ➡️ Portfolio page | ➡️ Add or Remove camera |
+
+### The ONVIF services utilized in this project.
+
+| Function                   | Description                                                              |
+| -------------------------- | ------------------------------------------------------------------------ |
+| ✅GetDeviceInformation()   | This operation gets basic device information from the device.            |
+| ✅GetUsers()               | This operation lists registered users and their credentials on a device. |
+| ✅GetSystemDateAndTime()   | This operation gets the device system date and time.                     |
+| ✅GetCapabilities()        | This operation will get various values ​​about Capabilities              |
+| ✅GetHostname()            | This operation is used by an endpoint to get the hostname from a device. |
+| ✅GetNetworkProtocols()    | This operation gets defined network protocols from a device.             |
+| ✅GetDiscoveryMode()       | This operation gets the discovery mode of a device.                      |
+| ✅GetServiceCapabilities() | This operation returns the capabilities of the PTZ service.              |
+
+---
+
+## 📷 Demo
+
+Insert : คลิปทดสอบทั้งระบบ
+
+---
+
+## ⚙️ Component
+
+You must have these installed first. to install the NONVIF project
+
+### Software
 
 - Ubuntu 20.04.5 LTS
   - Installation method ---> [Link](https://youtu.be/QKn5U2esuRk)
 - Golang | version 1.19
   - Installation method ---> [Link](https://www.dropbox.com/scl/fi/9clhqzmcuk0gcjgby2h38/Golang.paper?dl=0&rlkey=pipvjgui4256g0wn4sp2aoklj)
 
-## Dev Tool
+### Hardware
+
+- At least 2 IP cameras
+  ##### or
+- Use the "IP Webcam" application installed on your Android phone. | version 1.16.6.783
+  - Installation method ---> [Link](https://play.google.com/store/apps/details?id=com.pas.webcam&hl=th)
+
+### Dev Tool
 
 - VScode or Visual Studio Code version | 1.76
   - Installation method ---> [Link](https://code.visualstudio.com/)
-- DB Browser for SQLite | version 3.12.2
-  - Installation method ---> [Link](https://sqlitebrowser.org/dl/)
-    #### or
-  - Github sqlitebrowser ---> [Link](https://github.com/sqlitebrowser/sqlitebrowser)
-
-## Hardware Accessories
-
-- At least 2 IP cameras
-  #### or
-- 1 IP camera and Programe IP Webcam | version 1.16.6.783
-  - Installation method ---> [Link](https://play.google.com/store/apps/details?id=com.pas.webcam&hl=th)
 
 ---
 
-## Backend
+## 🔧 Installation
+
+Install the `NONVIF Project` with the following command.
+
+### Step : 1
+
+Please clone this repository from Nuntakorn-Buu/NONVIF on Github.
+
+```bash
+  git clone https://github.com/Nuntakorn-Buu/NONVIF.git
+```
+
+### Step : 2
+
+After completing the repository clone, use the following command to navigate into the Folder NONVIF
+
+```bash
+  cd NONVIF
+```
+
+### Step : 3
+
+After that, use the command `< go get >` to install and update the necessary modules for this project.
+
+```bash
+  go get
+```
+
+---
+
+## 💡 Running Tests
+
+To run tests, Run the following command
+
+```zsh
+  go run .
+```
+
+If the `< go run . >` command is successful, you will see the following message below.
+
+ใส่รูป
+
+---
+
+<details>
+  <summary>📑 Tech Stack</summary>
+
+#### Backend
 
 - HTTP Middleware ( [gorilla/mux](https://github.com/gorilla/mux) )
 - Login Session ( [gorilla/sessions](https://github.com/gorilla/sessions) )
 - Database Sqlite ( [go-sqlite3](https://github.com/mattn/go-sqlite3) & [msql](https://github.com/mateors/msql) )
+- Package ONVIF ( [inspii/onvif](https://github.com/inspii/onvif) ) or ( [Nuntakorn-Buu/onvif-2](https://github.com/Nuntakorn-Buu/onvif-2) )
 
-## Frontend
+#### Frontend
 
 - Server side templating ( [Go HTML Templates](https://pkg.go.dev/html/template) )
-- Frontend `Pure ( HTML , CSS )`
+- Frontend `Pure ( HTML , CSS , JavaScript)`
 
-## Framework
+#### Framework
 
 - w3.css
   - Installation method ---> [Link](https://www.w3schools.com/w3css/)
@@ -78,14 +156,15 @@
   - Home page ---> [Link](https://fontawesome.com/)
   - Installation method ---> [Link](https://cdnjs.com/libraries/font-awesome)
 
-## Modules
+#### Modules
 
 ```go
 require (
     github.com/gorilla/mux v1.8.0
 	github.com/gorilla/sessions v1.2.1
-	github.com/mateors/msql v0.0.0-20221130043645-280860a386a7
-	github.com/mattn/go-sqlite3 v1.14.16
+	github.com/inspii/onvif v0.0.0-20220209003952-107e7e0b00d2
+	github.com/mateors/msql v0.0.0-20230316154058-0966f727302f
+	github.com/mattn/go-sqlite3 v1.14.17
 )
 
 // indirect
@@ -94,36 +173,30 @@ require (
 )
 ```
 
+</details>
+
 ---
 
-## Step Install Repositories !!!
+## 📧 Support & Feedback
 
-### Step 1 :
+If there is a problem and need help or If you have any feedback, you can contact us at
 
-- ติดตั้งตามที่ได้ [Recommend](#recommend) ไว้ก่อนตามที่ระบุไว้ด้านบน
+![Support email](https://img.shields.io/badge/Support-Email-green?style=plastic&logo=appveyor) - Send email to 62050553@go.buu.ac.th
 
-### Step 2 :
+![Support github](https://img.shields.io/badge/Support-Github-blue?style=plastic&logo=appveyor) - Create issues on https://github.com/Nuntakorn-Buu/NONVIF
 
-- ทำการ clone Repositories นี้ จาก [Nuntakorn-Buu/NONVIF](https://github.com/Nuntakorn-Buu/NONVIF)
+---
 
-  หรือ ใช้คำสั่ง
+## 👷🏻‍♂️ Used By
 
-  ```bash
-  git clone https://github.com/Nuntakorn-Buu/NONVIF.git
-  ```
+This project has been tested by :
 
-### Step 3 :
+- 62050553 Nuntakorn Sopap (Student), Faculty of Engineering, Burapha University, Department of Embedded Systems.
 
-- หลังจากทำการ clone Repositories มาแล้ว. ให้ใช้คำสั่ง `< go get >` เพื่อติตดั้ง [Modules](#modules) ที่จำเป็นต่าง ๆ
-  ```go
-  go get
-  ```
+---
 
-### Step 4 :
+## 🙋🏻‍♂️ Authors
 
-- หลังจากทำตาม [Step 3 :](#step-3) เสร็จสิ้น. ต่อมาจะเป็นการใช้คำสั่ง `< go run. >` เพื่อทำการ Run Project นี้
-  ```go
-  go run .
-  ```
+- [@Nuntakorn [Non]](https://www.github.com/Nuntakorn-Buu)
 
 ---
