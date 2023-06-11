@@ -2,6 +2,7 @@ package msql
 
 import (
 	"database/sql"
+	"errors"
 	"fmt"
 	"net/url"
 	"strconv"
@@ -9,17 +10,13 @@ import (
 )
 
 type stringStringScan struct {
-	// cp are the column pointers
-	cp []interface{}
-	// row contains the final result
+	cp       []interface{}
 	row      []string
 	colCount int
 	colNames []string
 }
 type mapStringScan struct {
-	// cp are the column pointers
-	cp []interface{}
-	// row contains the final result
+	cp       []interface{}
 	row      map[string]string
 	colCount int
 	colNames []string
@@ -203,7 +200,6 @@ func ReadTable2Columns(table string, db *sql.DB) ([]string, error) {
 	}
 
 	defer rows.Close()
-	//sql.NullString
 	var vfield, vtype, vnull, vkey, vextra string
 	var vdefault *string
 
@@ -269,7 +265,6 @@ func Finsert(sql string, valAray []string, db *sql.DB) (int64, int64, error) {
 
 	lrid, _ := res.LastInsertId()
 	lcount, _ := res.RowsAffected()
-
 	return lrid, lcount, nil
 }
 
@@ -302,6 +297,33 @@ func Form2KeyValueSlice(form map[string][]string, colList []string) (keyList []s
 	for key, valAray := range form {
 		val := valAray[0]
 		fmap[key] = val
+	}
+
+	for _, colName := range colList {
+
+		var cval = ""
+		if colval, ok := fmap[colName]; ok {
+			//fmt.Printf("%v-> %v exist value = %v\n", i, colName, colval)
+			cval = colval
+		} else {
+			//fmt.Printf("%v-> %v NOT IN MAP => %v\n", i, colName, colval)
+		}
+
+		if cval != "" {
+			keyList = append(keyList, colName)
+			valList = append(valList, cval)
+		}
+	}
+	return
+}
+
+// New
+func Form2KeyValueSliceMap(form map[string]interface{}, colList []string) (keyList []string, valList []string) {
+
+	fmap := make(map[string]string)
+	for key, valAray := range form {
+		//val := valAray
+		fmap[key] = fmt.Sprint(valAray)
 	}
 
 	for _, colName := range colList {
@@ -425,6 +447,9 @@ func GetAllRowsByQuery(sql string, db *sql.DB) ([]map[string]interface{}, error)
 
 	defer rows.Close()
 	columnNames, err := rows.Columns()
+	if err != nil {
+		return nil, err
+	}
 
 	rc := newMapStringScan(columnNames)
 	tableData := make([]map[string]interface{}, 0)
@@ -432,11 +457,9 @@ func GetAllRowsByQuery(sql string, db *sql.DB) ([]map[string]interface{}, error)
 	for rows.Next() {
 
 		err := rc.Update(rows)
-		//check(err, "rc.Update")
 		if err != nil {
 			break
 		}
-
 		cv := rc.Get()
 		dd := make(map[string]interface{})
 		for _, col := range columnNames {
@@ -490,4 +513,40 @@ func InsertUpdate(form url.Values, db *sql.DB) string {
 		id = strconv.FormatInt(lrid, 10)
 	}
 	return message
+}
+
+// New
+func InsertUpdateMap(form map[string]interface{}, db *sql.DB) error {
+
+	id := form["id"] //if update
+	todo := form["todo"]
+	tableName := fmt.Sprint(form["table"])
+	primaryKeyField := form["pkfield"]
+
+	if todo == "" {
+		return errors.New("todo is missing")
+	}
+	
+	dbColList, err := ReadTable2Columns(tableName, db)
+	if err != nil {
+		return err
+	}
+	keyAray, valAray := Form2KeyValueSliceMap(form, dbColList)
+	if todo == "update" {
+		whereCondition := fmt.Sprintf("%s='%v'", primaryKeyField, id) //if always id then we may avoid it
+		sql := UpdateQueryBuilder(keyAray, tableName, whereCondition)
+		_, err = UpdateByValAray(sql, valAray, db)
+		if err != nil {
+			return err
+		}
+
+	} else if todo == "insert" {
+
+		sql := InsertQueryBuilder(keyAray, tableName)
+		_, _, err := Finsert(sql, valAray, db)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
