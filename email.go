@@ -1,15 +1,21 @@
+// `package main` is the declaration of the package name.
+// In Go, the `main` package is a special package that is used to build executable programs.
+// It must contain a `main` function as the entry point of the program.
 package main
 
+// The `import` statement is used to import packages that are necessary for the program to run.
+// In this case, the program is importing the following packages:
 import (
-	"fmt"
-	"net/smtp"
+	"fmt"      // Tools for manipulating the screen display. and reading data from the user You can use the Printf() function.
+	"net/smtp" // It is used to send emails via the SMTP protocol (Simple Mail Transfer Protocol), which is the protocol used to send emails across networks.
 )
 
-var FromEmail = "your.email@gmail.com"                                       // แก้ไขเป็นที่อยู่อีเมล์ Gmail ของเรา
-var EmailPassword = "รหัสที่ได้รับจากการทำการยืนยันขั้นสูง gmxyuycyfaaeywwe" // แก้ไขเป็นรหัสผ่านของบัญชี Gmail ของเรา
-// หากเป็นบัญชีที่ใช้งาน"การยืนยันขั้นสูง" (2-Step Verification)
-// ให้หารหัสจาก Link = https://nuntakorn-sp.notion.site/Problem-Send-Email-cb36c73588ca40de89d997e06581f017
+var FromEmail = "your_email@gmail.com"         // Fixed to our Gmail email address.
+var EmailPassword = "such as gmxyuycyfaaeywwe" // Codes obtained by performing advanced verification,
+// If it is an account that uses "Advanced Verification" (2-Step Verification)
+// How to create a code Link = https://nuntakorn-sp.notion.site/Problem-Send-Email-cb36c73588ca40de89d997e06581f017
 
+// The function sends an email with a verification code to a specified email address using SMTP authentication.
 func emailSend(email string) {
 	from := FromEmail
 	password := EmailPassword
@@ -41,5 +47,4 @@ func emailSend(email string) {
 	}
 	fmt.Println("Email Sent : Successfully !!")
 	fmt.Println("-------------------- | Please check your email.")
-
 }

@@ -1,21 +1,28 @@
+// `package main` is the declaration of the package name.
+// In Go, the `main` package is a special package that is used to build executable programs.
+// It must contain a `main` function as the entry point of the program.
 package main
 
-//ทำการ import library ที่จำเป็น
+// The `import` statement is used to import packages that are necessary for the program to run.
+// In this case, the program is importing the following packages:
 import (
-	"database/sql"
-	"encoding/json"
-	"fmt"
-	"log"
-	"net/http"
-	"project-nonvif/view"
-	"strconv"
+	"database/sql"        // Used to work with databases. It supports connection and data management of multiple databases such as MySQL, PostgreSQL, SQLite, etc.
+	"encoding/json"       // Used to encode and decode data in JSON (JavaScript Object Notation) format. It helps to convert Go data to JSON and convert JSON back to Go data.
+	"fmt"                 // Tools for manipulating the screen display. and reading data from the user You can use the Printf() function.
+	"log"                 // Use the message log (log) and don't forget the message. (error reporting)
+	"net/http"            // Used to create a Go web server, with functions and data structures that provide services for handling network connections and HTTP traffic, such as the HandleFunc() function.
+	"project-nonvif/view" // It's a self-written package. contains data structures and functions related to web page rendering.
+	"strconv"             // Used to convert numeric and string values. This package provides functions that facilitate data conversions related to numeric manipulation.
 
-	"github.com/inspii/onvif"
+	"github.com/inspii/onvif" // It is a library used to connect and control ONVIF (Open Network Video Interface Forum) standard peripherals. It contains functions and data structures that help connect and communicate with ONVIF devices.
 
-	"github.com/gorilla/sessions"
+	"github.com/gorilla/sessions" //It helps to manage user sessions in the application. i.e. storing and reading values from user sessions.
 )
 
-// ประกาศตัวแปรต่าง ๆ
+// The above code is declaring multiple variables of type *view.View in Go language.
+// These variables are likely to be used to store different views or templates for a web application.
+// The names of the variables suggest that they may correspond to different pages of the web application
+// such as home, about, cameras, dashboard, portfolio, login, signup, forgot password, etc.
 var (
 	homeView            *view.View
 	aboutView           *view.View
@@ -31,11 +38,13 @@ var (
 	updatePassView      *view.View
 )
 
-// สร้างตัวแปรเก็บข้อมูลกล้อง
+// The above code is declaring an empty slice of strings named `cameraURLs` in the Go programming language.
 var cameraURLs = []string{}
 
-// สร้าง API ต่างๆ
+// Build various APIs
+
 // API Login
+// The login function checks if a user is already logged in and redirects them if they are, otherwise it displays the login view.
 func login(w http.ResponseWriter, r *http.Request) {
 	session, err := store.Get(r, "login-session")
 	FetchError(err)
@@ -44,15 +53,14 @@ func login(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
-
 	if !ok {
 		err := loginView.Template.Execute(w, nil)
 		FetchError(err)
 	}
-
 }
 
 // API Login Authorization
+// This function handles user authentication and session creation for a login page in a Go web application.
 func loginAuth(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	email := r.FormValue("email")
@@ -84,12 +92,15 @@ func loginAuth(w http.ResponseWriter, r *http.Request) {
 }
 
 // API forgot Password
+// The function serves the forgot password view template to the user.
 func forgotPass(w http.ResponseWriter, _ *http.Request) {
 	err := forgotPassView.Template.Execute(w, nil)
 	FetchError(err)
 }
 
 // API forgot Password Authrization
+// The function handles the authentication process for a forgotten password request,
+// checking if the email exists and sending a code to the user's email if it does.
 var isEmail string
 
 func forgotPassAuth(w http.ResponseWriter, r *http.Request) {
@@ -114,10 +125,11 @@ func forgotPassAuth(w http.ResponseWriter, r *http.Request) {
 		err := fotgotAuthErrorView.Template.Execute(w, "Your account does not exist")
 		FetchError(err)
 	}
-
 }
 
 // API forgot Code Verify
+// This function verifies a code entered by the user and redirects them to a password update page if the code is correct,
+// otherwise it redirects them back to the forgot password page.
 var randomNUM int = int(sixDigits())
 
 func forgotCodeVerify(w http.ResponseWriter, r *http.Request) {
@@ -141,6 +153,7 @@ func forgotCodeVerify(w http.ResponseWriter, r *http.Request) {
 }
 
 // API Check Password
+// The function checks if two password inputs match and updates the password if they do, otherwise it displays an error message.
 func checkPass(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	pass1 := r.FormValue("pass1")
@@ -154,6 +167,7 @@ func checkPass(w http.ResponseWriter, r *http.Request) {
 }
 
 // API Home page
+// The function checks if a user is logged in and redirects them to the login page if not.
 func home(w http.ResponseWriter, r *http.Request) {
 	session, err := store.Get(r, "login-session")
 	FetchError(err)
@@ -164,17 +178,17 @@ func home(w http.ResponseWriter, r *http.Request) {
 	} else {
 		http.Redirect(w, r, "/login", http.StatusSeeOther)
 	}
-
 }
 
 // API Cameras page
+// This function retrieves camera information from the database and displays it on a web page.
+// If the user is not logged in to the system will be redirected to the login page.
 func cameras(w http.ResponseWriter, r *http.Request) {
 	session, err := store.Get(r, "login-session")
 	FetchError(err)
 	_, ok := session.Values["username"]
 	if ok {
-		// ดึงข้อมูลกล้องจากฐานข้อมูล cameras
-		rows, err := db_cameras.Query("SELECT url FROM cameras")
+		rows, err := db_cameras.Query("SELECT url FROM cameras") // Retrieve camera data from cameras database.
 		if err != nil {
 			log.Println(err)
 			return
@@ -207,26 +221,20 @@ func cameras(w http.ResponseWriter, r *http.Request) {
 		})
 		FetchError(err)
 
-		// เรียกใช้ฟังก์ชัน metadatas เพื่อแสดงข้อมูลเมื่อกดปุ่ม Show Data Cameras
-		if r.Method == http.MethodPost {
-			if r.FormValue("action") == "showData" {
-				metadatas(w, r)
-			}
-		}
-
 	} else {
 		http.Redirect(w, r, "/login", http.StatusSeeOther)
 	}
 }
 
 // API Dashboard page
+// The function retrieves camera data from a database and displays it on a dashboard page if the user is logged in,
+// otherwise it redirects to the login page.
 func dashboard(w http.ResponseWriter, r *http.Request) {
 	session, err := store.Get(r, "login-session")
 	FetchError(err)
 	_, ok := session.Values["username"]
 	if ok {
-		// ดึงข้อมูลเซ็นเซอร์จากฐานข้อมูล cameras
-		rows, err := db_cameras.Query("SELECT url FROM cameras")
+		rows, err := db_cameras.Query("SELECT url FROM cameras") // Retrieve camera data from cameras database.
 		if err != nil {
 			log.Println(err)
 			return
@@ -264,6 +272,7 @@ func dashboard(w http.ResponseWriter, r *http.Request) {
 }
 
 // API About page
+// This function checks if a user is logged in and redirects them to the login page if they are not.
 func about(w http.ResponseWriter, r *http.Request) {
 	session, err := store.Get(r, "login-session")
 	FetchError(err)
@@ -277,6 +286,8 @@ func about(w http.ResponseWriter, r *http.Request) {
 }
 
 // API Portfolio page
+// This function checks if a user is logged in and redirects them to the login page if not,
+// otherwise it displays the portfolio view.
 func portfolio(w http.ResponseWriter, r *http.Request) {
 	session, err := store.Get(r, "login-session")
 	FetchError(err)
@@ -290,6 +301,8 @@ func portfolio(w http.ResponseWriter, r *http.Request) {
 }
 
 // API Signup page
+// The function checks if a user is logged in and redirects them to the homepage if they are,
+// otherwise it displays the signup view.
 func signup(w http.ResponseWriter, r *http.Request) {
 	session, err := store.Get(r, "login-session")
 	FetchError(err)
@@ -304,6 +317,8 @@ func signup(w http.ResponseWriter, r *http.Request) {
 }
 
 // API Signup Authorization page
+// This function handles the signup authentication process by parsing form data, creating a new user,
+// and setting a session cookie before redirecting to the homepage.
 func signupAuth(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	name := r.FormValue("fullName")
@@ -333,6 +348,7 @@ func signupAuth(w http.ResponseWriter, r *http.Request) {
 }
 
 // API Logout page
+// The function logs out a user by deleting their session and redirecting them to the login page.
 func logout(w http.ResponseWriter, r *http.Request) {
 	session, err := store.Get(r, "login-session")
 	FetchError(err)
@@ -342,44 +358,40 @@ func logout(w http.ResponseWriter, r *http.Request) {
 }
 
 // API not Fount page
+// This function handles a "not found" error by executing a template and writing it to the response.
 func notFount(w http.ResponseWriter, _ *http.Request) {
 	err := notFountView.Template.Execute(w, nil)
 	FetchError(err)
 }
 
 // API Add Camera
+// The function adds a camera URL to a database table and sends a success response.
 func addCamera(w http.ResponseWriter, r *http.Request) {
 	cameraURL := r.FormValue("cameraURL")
-
-	// เพิ่มข้อมูลกล้องลงในฐานข้อมูล cameras
-	insertStmt := `INSERT INTO cameras (url) VALUES (?)`
+	insertStmt := `INSERT INTO cameras (url) VALUES (?)` // Add camera information to the cameras database.
 	_, err := db_cameras.Exec(insertStmt, cameraURL)
 	if err != nil {
 		log.Println(err)
 		return
 	}
-
-	// ส่งตอบกลับว่าเพิ่มกล้องสำเร็จ
-	w.WriteHeader(http.StatusOK)
+	w.WriteHeader(http.StatusOK) // sends a reply that the camera was added successfully
 }
 
 // API Remove Camera
+// This function removes camera data from a database based on the camera URL provided in an HTTP request.
 func removeCamera(w http.ResponseWriter, r *http.Request) {
 	cameraURL := r.FormValue("cameraURL")
-
-	// ลบข้อมูลกล้องออกจากฐานข้อมูล cameras
-	deleteStmt := `DELETE FROM cameras WHERE url = ?`
+	deleteStmt := `DELETE FROM cameras WHERE url = ?` // delete camera data from cameras database
 	_, err := db_cameras.Exec(deleteStmt, cameraURL)
 	if err != nil {
 		log.Println(err)
 		return
 	}
-
-	// ส่งตอบกลับว่าลบกล้องสำเร็จ
-	w.WriteHeader(http.StatusOK)
+	w.WriteHeader(http.StatusOK) // sends a reply that the camera was added successfully
 }
 
 // API metadatas
+// The function retrieves metadata information from an ONVIF camera and sends it back to the web page in JSON response format.
 func metadatas(w http.ResponseWriter, r *http.Request) {
 	cameraURL := r.FormValue("cameraURL")
 	camera := onvif.NewOnvifDevice(cameraURL)
@@ -439,7 +451,7 @@ func metadatas(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// สร้างข้อมูล JSON จาก di,users,dateandtime,cap,hostname และ networkprotocols
+	// Generate JSON data from di,users,dateandtime,cap,hostname networkprotocols, discovery and servicecap.
 	data := struct {
 		DeviceInformation   interface{}
 		Users               interface{}
@@ -476,7 +488,7 @@ func metadatas(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Data From GetServiceCapabilities :", servicecap)
 	fmt.Println("")
 
-	// ส่งข้อมูลกลับไปยังหน้าเว็บในรูปแบบ JSON response
+	// Sends data back to the web page in JSON response format.
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(data)
 }

@@ -51,14 +51,12 @@
             <div class="w3-bar">
                 <p class="w3-text-white w3-xlarge" style="text-shadow:2px 2px 0 rgb(0, 0, 0)">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    รายงานการศึกษานี้มีวัตถุประสงค์เพื่อลดปัญหาการส่งข้อมูลภาพ
-                    วิดีโอและข้อมูลเมตาที่แยกการจัดส่งข้อมูลกัน ส่งผลให้ปลายทางผู้รับเห็นข้อมูลภาพวิดีโอและ
-                    ข้อมมูลเมตาไม่ตรงกัน โดยแก้ไขให้เป็นการบรรจุข้อมูลทั้งสองไปในการบรรจุเดียวที่ต้นทาง ในรูปแบบ
-                    มาตรฐาน ONVIF เพื่อลดปัญหาการใช้งานข้ามอุปกรณ์ ข้ามยี่ห้อไม่ได้ การใช้งานโปรแกรมที่
-                    แตกต่างกันตามแต่ละยี่ห้อของผู้ให้บริการกล้องไอพีด้วยการใช้งานตามมาตรฐาน ONVIF เพื่อให้
-                    กล้องไอพีที่ยังไม่มีมาตรฐาน ONVIF สามารถมาใช้งานกับตัวโครงงานนี้ได้ เพื่อศึกษา
-                    หลักการใช้งานมาตรฐาน ONVIF ในการสตรีมภาพวิดีโอและข้อมูลเมตาไปยังหน้าเว็บไซต์ พร้อม
-                    ทั้งการจัดการกล้องไอพีได้ที่หน้าเว็บไซต์
+                    This project is an implementation of the ONVIF protocol on a web interface. It involves creating a
+                    web page to support
+                    video streaming from an Android application called 'IP Webcam.' This app simulates an IP camera that
+                    supports the ONVIF
+                    protocol and uses ONVIF protocol functions to retrieve various camera data from IP Webcam and
+                    display it on the web page.
                 </p>
             </div>
         </div>
@@ -77,38 +75,41 @@
                     <b>ONVIF Protocol </b>
                     <i class="fa-regular fa-file-code w3-text-pink"></i>
                 </h1>
-                <h3 class="w3-center w3-text-white" style="text-shadow:2px 2px 0 rgb(0, 0, 0)">คืออะไร ???</h3>
+                <h3 class="w3-center w3-text-white" style="text-shadow:2px 2px 0 rgb(0, 0, 0)">What is ???</h3>
                 <p class="w3-large w3-text-white">Open Network Video Interface Forum (ONVIF)
-                    เป็นโปรโตคอลที่สร้างขึ้นเพื่อสร้างมาตรฐานในการสื่อสารระหว่างอุปกรณ์วิดีโอเครือข่ายประเภทต่างๆ เช่น
-                    กล้อง IP,
-                    ตัวเข้ารหัสวิดีโอ และเครื่องบันทึกวิดีโอเครือข่าย โปรโตคอล ONVIF
-                    จัดเตรียมภาษาทั่วไปที่ช่วยให้อุปกรณ์เหล่านี้แบ่งปันวิดีโอและข้อมูลอื่นๆ ผ่านเครือข่าย
-                    <span class="w3-tag w3-yellow w3-round-large w3-card-2">โดยไม่คำนึงถึง
-                        ผู้ผลิตหรือรุ่นของอุปกรณ์</span>
+                    It is a protocol created to standardize communication between different types of network video
+                    devices such as IP
+                    cameras, video encoders and network video recorders. The ONVIF protocol provides a common language
+                    that allows these
+                    devices to share video and other data. via network
+                    <span class="w3-tag w3-yellow w3-round-large w3-card-2">regardless of the manufacturer or model of
+                        the device.</span>
                 </p>
-                <p class="w3-large w3-text-white">โปรโตคอล ONVIF
-                    ให้ประโยชน์หลายประการแก่ผู้ใช้และผู้ผลิตอุปกรณ์วิดีโอเครือข่าย ประโยชน์ที่สำคัญบางประการ ได้แก่ :
+                <p class="w3-large w3-text-white">The ONVIF protocol offers several benefits to users and network video
+                    equipment manufacturers. Some of the key benefits
+                    include:
                     <br>
                 </p>
                 <p class="w3-large w3-text-aqua" style="text-shadow:2px 2px 0 rgb(0, 0, 0)">
-                    ๐ การทำงานร่วมกัน :
-                    <span class="w3-text-white"> ONVIF ช่วยให้อุปกรณ์วิดีโอเครือข่ายยี่ห้อต่างๆ สามารถสื่อสารกันได้
-                        ทำให้ง่ายต่อการสร้างระบบวิดีโอเฝ้าระวังที่มีผู้ขายหลายราย <br>
+                    ๐ Working together :
+                    <span class="w3-text-white"> ONVIF allows different brands of network video equipment to able to
+                        communicate This makes it easy to build a
+                        multi-vendor video surveillance system. <br>
                     </span>
-                    ๐ ความยืดหยุ่น :
-                    <span class="w3-text-white"> ONVIF รองรับตัวแปลงสัญญาณวิดีโอ ความละเอียด
-                        และอัตราเฟรมที่หลากหลาย
-                        ซึ่งทำให้ง่ายต่อการรวมกล้องประเภทต่างๆและอุปกรณ์อื่นๆ ไว้ในระบบเดียว <br>
+                    ๐ Flexibility :
+                    <span class="w3-text-white"> ONVIF supports a wide range of video codecs, resolutions, and frame
+                        rates, making it easy to integrate different types
+                        of cameras and other devices. in one system <br>
                     </span>
-                    ๐ ผสานรวมกันได้ง่าย :
-                    <span class="w3-text-white"> ONVIF
-                        ช่วยลดความยุ่งยากในกระบวนการรวมอุปกรณ์ประเภทต่างๆ เข้ากับระบบกล้องวงจรปิด
-                        ซึ่งช่วยลดเวลาและความพยายามที่จำเป็นในการกำหนดค่าและจัดการระบบ <br>
+                    ๐ Easy to integrate :
+                    <span class="w3-text-white"> ONVIF simplifies the process of integrating different types of devices.
+                        to the CCTV system This reduces the time and
+                        effort required to configure and manage the system. <br>
                     </span>
-                    ๐ การใช้งานในอนาคต :
-                    <span class="w3-text-white">ด้วยการใช้โปรโตคอลมาตรฐานเช่น ONVIF องค์กรต่างๆ
-                        สามารถมั่นใจได้ว่าระบบกล้องวงจรปิดของตนสามารถทำงานร่วมกับอุปกรณ์และเทคโนโลยีใหม่ๆ
-                        ที่อาจเปิดตัวในอนาคต
+                    ๐ Future use :
+                    <span class="w3-text-white">By using standard protocols such as ONVIF, organizations can ensure
+                        their video surveillance systems are compatible with
+                        new equipment and technologies. that may be launched in the future
                     </span>
                 </p>
             </div>
@@ -228,7 +229,7 @@
         <!-- Expand the project -->
         <div class="w3-container w3-padding-32">
             <h1 class="w3-text-white" style="text-shadow:2px 2px 0 rgb(0, 0, 0)">
-                <b>การนำ Project ไปต่อยอด : </b>
+                <b>Further development of the project : </b>
                 <i class="fa-solid fa-cube w3-text-pink"></i>
             </h1>
         </div>
@@ -343,6 +344,7 @@
 <!-- End index -->
 
 </div>
+
 </body>
 
 </html>

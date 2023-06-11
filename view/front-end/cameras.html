@@ -1,14 +1,6 @@
 {{template "Header"}}
 {{template "Menu"}}
 
-<style>
-    pre {
-        padding: 10px;
-        border-radius: 5px;
-        overflow: auto;
-    }
-</style>
-
 <!-- Dashboard -->
 <div class="w3-content w3-padding" style="max-width:1564px">
     <div class="w3-container" style="margin-top: 50px;">
@@ -39,244 +31,6 @@
             </div>
             {{end}}
         </div>
-        <div class="w3-xlarge w3-text-white">
-            <!-- เพิ่มตัวแปร ID สำหรับแสดงข้อมูล จาก /metadatas -->
-            <!-- แสดงข้อมูลจาก Hostname -->
-            <div class="w3-padding-16">
-                <p class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-card-2">Hostname :</p>
-                <div id="hostname" class="w3-card-2 w3-round-large w3-padding w3-light-gray">
-                    <p><strong>Hostname : </strong> <span id="hostname-name"></span></p>
-                    <p><strong>FromDHCP : </strong> <span id="hostname-fromDHCP"></span></p>
-                </div>
-            </div>
-            <!-- แสดงข้อมูลจาก NetworkProtocols -->
-            <div class="w3-padding-16">
-                <p class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-card-2">
-                    NetworkProtocols :</p>
-                <div id="networkprotocols" class="w3-card-2 w3-round-large w3-padding w3-light-gray">
-                    <p><strong>Name : </strong> <span id="network-name"></span></p>
-                    <p><strong>Enabled : </strong> <span id="network-enabled"></span></p>
-                </div>
-            </div>
-            <!-- แสดงข้อมูลจาก DeviceInformation -->
-            <div class="w3-padding-16">
-                <p class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-card-2">Device
-                    Information :</p>
-                <div id="device-information" class="w3-card-2 w3-round-large w3-padding w3-light-gray">
-                    <p><strong>Manufacturer : </strong> <span id="manufacturer"></span></p>
-                    <p><strong>Model : </strong> <span id="model"></span></p>
-                    <p><strong>Firmware Version : </strong> <span id="firmware-version"></span></p>
-                    <p><strong>Serial Number : </strong> <span id="serial-number"></span></p>
-                    <p><strong>Hardware ID : </strong> <span id="hardware-id"></span></p>
-                </div>
-            </div>
-            <!-- แสดงข้อมูลจาก Users -->
-            <div class="w3-padding-16">
-                <p class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-card-2">Users :</p>
-                <div id="users" class="w3-card-2 w3-round-large w3-padding w3-light-gray">
-                    <p><strong>Username : </strong> <span id="username"></span></p>
-                    <p><strong>Password : </strong> <span id="password"></span></p>
-                    <p><strong>UserLevel : </strong> <span id="userlevel"></span></p>
-                </div>
-            </div>
-            <!-- แสดงข้อมูลจาก DiscoveryMode  -->
-            <div class="w3-padding-16">
-                <p class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-card-2">DiscoveryMode :</p>
-                <div id="discovery" class="w3-card-2 w3-round-large w3-padding w3-light-gray">
-                    <p><strong>Discovery Mode : </strong> <span id="discovery_mode"></span></p>
-                </div>
-            </div>
-            <!-- แสดงข้อมูลจาก SystemDateAndTime -->
-            <div class="w3-padding-16">
-                <p class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-card-2">System Date and
-                    Time :</p>
-                <!-- <pre id="dateandtime" class="w3-card-2 w3-round-large w3-padding w3-light-gray"></pre> -->
-                <div id="systemdateandtime" class="w3-card-2 w3-round-large w3-padding w3-light-gray">
-                    <p><strong>SystemDateAndTime :</strong></p>
-                    <ul><strong>DateTimeType :</strong><span id="DateTimeType"></span></ul>
-                    <ul><strong>DaylightSavings :</strong><span id="DaylightSavings"></span></ul>
-                    <ul><strong>UTCDateTime :</strong>
-                        <li class="w3-margin-left" style="list-style: none"><strong>Time : </strong>
-                            <span id="UTCDateTime-Time-Hour"></span>
-                            <span>Hour </span>
-                            <span id="UTCDateTime-Time-Minute"></span>
-                            <span>Minute</span>
-                            <span id="UTCDateTime-Time-Second"></span>
-                            <span>Second</span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>Date : </strong>
-                            <span id="UTCDateTime-Date-Day"></span>
-                            <span>Day </span>
-                            <span id="UTCDateTime-Date-Month"></span>
-                            <span>Month</span>
-                            <span id="UTCDateTime-Date-Year"></span>
-                            <span>Year</span>
-                        </li>
-                    </ul>
-                    <ul><strong>LocalDateTime :</strong>
-                        <li class="w3-margin-left" style="list-style: none"><strong>Time : </strong>
-                            <span id="LocalDateTime-Time-Hour"></span>
-                            <span>Hour </span>
-                            <span id="LocalDateTime-Time-Minute"></span>
-                            <span>Minute</span>
-                            <span id="LocalDateTime-Time-Second"></span>
-                            <span>Second</span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>Date : </strong>
-                            <span id="LocalDateTime-Date-Day"></span>
-                            <span>Day </span>
-                            <span id="LocalDateTime-Date-Month"></span>
-                            <span>Month</span>
-                            <span id="LocalDateTime-Date-Year"></span>
-                            <span>Year</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- แสดงข้อมูลจาก Capabilities -->
-            <div class="w3-padding-16">
-                <p class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-card-2">Capabilities :
-                </p>
-                <pre id="capabilities" class="w3-card-2 w3-round-large w3-padding w3-light-gray"></pre>
-            </div>
-            <!-- แสดงข้อมูลจาก ServiceCapabilities  -->
-            <div class="w3-padding-16">
-                <p class="w3-xxlarge w3-bar-item w3-button w3-green w3-round-xlarge w3-card-2">ServiceCapabilities :</p>
-                <!-- <pre id="servicecap-capabilities" class="w3-card-2 w3-round-large w3-padding w3-light-gray"></pre> -->
-                <div id="servicecap" class="w3-card-2 w3-round-large w3-padding w3-light-gray">
-                    <p><strong>Capabilities:</strong></p>
-                    <ul><strong>Network :</strong>
-                        <li class="w3-margin-left" style="list-style: none"><strong>IPFilter : </strong><span
-                                id="servicecap-network-1"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>ZeroConfiguration : </strong><span
-                                id="servicecap-network-2"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>IPVersion6 : </strong><span
-                                id="servicecap-network-3"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>DynDNS : </strong><span
-                                id="servicecap-network-4"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>Dot11Configuration : </strong><span
-                                id="servicecap-network-5"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>Dot1XConfigurations : </strong><span
-                                id="servicecap-network-6"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>HostnameFromDHCP : </strong><span
-                                id="servicecap-network-7"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>NTP : </strong><span
-                                id="servicecap-network-8"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>DHCPv6 : </strong><span
-                                id="servicecap-network-9"></span>
-                        </li>
-                    </ul>
-                    <ul><strong>Security :</strong>
-                        <li class="w3-margin-left" style="list-style: none"><strong>TLS1_0 : </strong><span
-                                id="servicecap-security-1"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>TLS1_1 : </strong><span
-                                id="servicecap-security-2"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>TLS1_2 : </strong><span
-                                id="servicecap-security-3"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>OnboardKeyGeneration :
-                            </strong><span id="servicecap-security-4"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>AccessPolicyConfig : </strong><span
-                                id="servicecap-security-5"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>DefaultAccessPolicy : </strong><span
-                                id="servicecap-security-6"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>Dot1X : </strong><span
-                                id="servicecap-security-7"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>RemoteUserHandling : </strong><span
-                                id="servicecap-security-8"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>X509Token : </strong><span
-                                id="servicecap-security-9"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>SAMLToken : </strong><span
-                                id="servicecap-security-10"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>KerberosToken : </strong><span
-                                id="servicecap-security-11"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>UsernameToken : </strong><span
-                                id="servicecap-security-12"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>HTTPDigest : </strong><span
-                                id="servicecap-security-13"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>RELToken : </strong><span
-                                id="servicecap-security-14"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>SupportedEAPMethods : </strong><span
-                                id="servicecap-security-15"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>MaxUsers : </strong><span
-                                id="servicecap-security-16"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>MaxUserNameLength : </strong><span
-                                id="servicecap-security-17"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>MaxPasswordLength : </strong><span
-                                id="servicecap-security-18"></span>
-                        </li>
-                    </ul>
-                    <ul><strong>System :</strong>
-                        <li class="w3-margin-left" style="list-style: none"><strong>DiscoveryResolve : </strong><span
-                                id="servicecap-system-1"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>DiscoveryBye : </strong><span
-                                id="servicecap-system-2"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>RemoteDiscovery : </strong><span
-                                id="servicecap-system-3"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>SystemBackup : </strong><span
-                                id="servicecap-system-4"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>SystemLogging : </strong><span
-                                id="servicecap-system-5"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>FirmwareUpgrade : </strong><span
-                                id="servicecap-system-6"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>HTTPFirmwareUpgrade : </strong><span
-                                id="servicecap-system-7"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>HTTPSystemBackup : </strong><span
-                                id="servicecap-system-8"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>HTTPSystemLogging : </strong><span
-                                id="servicecap-system-9"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>HTTPSupportInformation :
-                            </strong><span id="servicecap-system-10"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>StorageConfiguration :
-                            </strong><span id="servicecap-system-11"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>MaxStorageConfigurations :
-                            </strong><span id="servicecap-system-12"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>GeoLocationEntries : </strong><span
-                                id="servicecap-system-13"></span>
-                        </li>
-                        <li class="w3-margin-left" style="list-style: none"><strong>AutoGeo : </strong><span
-                                id="servicecap-system-14"></span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 <!-- End Dashboard -->
@@ -291,100 +45,6 @@
         iframe.frameBorder = "0";
         document.getElementById("camera-stream").innerHTML = "";
         document.getElementById("camera-stream").appendChild(iframe);
-
-        // เรียกใช้ API metadatas
-        fetch("/metadatas", {
-            method: "POST",
-            body: new URLSearchParams({
-                cameraURL: cameraURL
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                // แสดงข้อมูลในหน้าเว็บ
-
-                // แสดงข้อมูลจาก DeviceInformation
-                document.getElementById("manufacturer").innerText = data.DeviceInformation.Manufacturer;
-                document.getElementById("model").innerText = data.DeviceInformation.Model;
-                document.getElementById("firmware-version").innerText = data.DeviceInformation.FirmwareVersion;
-                document.getElementById("serial-number").innerText = data.DeviceInformation.SerialNumber;
-                document.getElementById("hardware-id").innerText = data.DeviceInformation.HardwareID;
-                // แสดงข้อมูลจาก Users
-                var user = data.Users.User[0];
-                document.getElementById("username").innerText = user.Username;
-                document.getElementById("password").innerText = user.Password;
-                document.getElementById("userlevel").innerText = user.UserLevel;
-                // แสดงข้อมูลจาก SystemDateAndTime
-                // document.getElementById("dateandtime").innerText = JSON.stringify(data.SystemDateAndTime, null, 2);
-                document.getElementById("DateTimeType").innerText = data.SystemDateAndTime.SystemDateAndTime.DateTimeType;
-                document.getElementById("DaylightSavings").innerText = data.SystemDateAndTime.SystemDateAndTime.DaylightSavings;
-                document.getElementById("UTCDateTime-Time-Hour").innerText = data.SystemDateAndTime.SystemDateAndTime.UTCDateTime.Time.Hour;
-                document.getElementById("UTCDateTime-Time-Minute").innerText = data.SystemDateAndTime.SystemDateAndTime.UTCDateTime.Time.Minute;
-                document.getElementById("UTCDateTime-Time-Second").innerText = data.SystemDateAndTime.SystemDateAndTime.UTCDateTime.Time.Second;
-                document.getElementById("UTCDateTime-Date-Day").innerText = data.SystemDateAndTime.SystemDateAndTime.UTCDateTime.Date.Day;
-                document.getElementById("UTCDateTime-Date-Month").innerText = data.SystemDateAndTime.SystemDateAndTime.UTCDateTime.Date.Month + 1;
-                document.getElementById("UTCDateTime-Date-Year").innerText = data.SystemDateAndTime.SystemDateAndTime.UTCDateTime.Date.Year;
-                document.getElementById("LocalDateTime-Time-Hour").innerText = data.SystemDateAndTime.SystemDateAndTime.LocalDateTime.Time.Hour + 7;
-                document.getElementById("LocalDateTime-Time-Minute").innerText = data.SystemDateAndTime.SystemDateAndTime.LocalDateTime.Time.Minute;
-                document.getElementById("LocalDateTime-Time-Second").innerText = data.SystemDateAndTime.SystemDateAndTime.LocalDateTime.Time.Second;
-                document.getElementById("LocalDateTime-Date-Day").innerText = data.SystemDateAndTime.SystemDateAndTime.LocalDateTime.Date.Day;
-                document.getElementById("LocalDateTime-Date-Month").innerText = data.SystemDateAndTime.SystemDateAndTime.LocalDateTime.Date.Month + 1;
-                document.getElementById("LocalDateTime-Date-Year").innerText = data.SystemDateAndTime.SystemDateAndTime.LocalDateTime.Date.Year;
-                // แสดงข้อมูลจาก Capabilities
-                document.getElementById("capabilities").innerText = JSON.stringify(data.Capabilities, null, 2);
-                // แสดงข้อมูลจาก Hostname
-                document.getElementById("hostname-name").innerText = data.Hostname.HostnameInformation.Name;
-                document.getElementById("hostname-fromDHCP").innerText = data.Hostname.HostnameInformation.FromDHCP;
-                // แสดงข้อมูลจาก NetworkProtocols
-                var network = data.NetworkProtocols.NetworkProtocols[0];
-                document.getElementById("network-name").innerText = network.Name;
-                document.getElementById("network-enabled").innerText = network.Enabled;
-                // แสดงข้อมูลจาก DiscoveryMode 
-                document.getElementById("discovery_mode").innerText = data.DiscoveryMode.DiscoveryMode;
-                // แสดงข้อมูลจาก ServiceCapabilities 
-                // document.getElementById("servicecap-capabilities").innerText = JSON.stringify(data.ServiceCapabilities, null, 2);
-                document.getElementById("servicecap-network-1").innerText = data.ServiceCapabilities.Capabilities.Network.IPFilter;
-                document.getElementById("servicecap-network-2").innerText = data.ServiceCapabilities.Capabilities.Network.ZeroConfiguration;
-                document.getElementById("servicecap-network-3").innerText = data.ServiceCapabilities.Capabilities.Network.IPVersion6;
-                document.getElementById("servicecap-network-4").innerText = data.ServiceCapabilities.Capabilities.Network.DynDNS;
-                document.getElementById("servicecap-network-5").innerText = data.ServiceCapabilities.Capabilities.Network.Dot11Configuration;
-                document.getElementById("servicecap-network-6").innerText = data.ServiceCapabilities.Capabilities.Network.Dot1XConfigurations;
-                document.getElementById("servicecap-network-7").innerText = data.ServiceCapabilities.Capabilities.Network.HostnameFromDHCP;
-                document.getElementById("servicecap-network-8").innerText = data.ServiceCapabilities.Capabilities.Network.NTP;
-                document.getElementById("servicecap-network-9").innerText = data.ServiceCapabilities.Capabilities.Network.DHCPv6;
-                document.getElementById("servicecap-security-1").innerText = data.ServiceCapabilities.Capabilities.Security.TLS1_0;
-                document.getElementById("servicecap-security-2").innerText = data.ServiceCapabilities.Capabilities.Security.TLS1_1;
-                document.getElementById("servicecap-security-3").innerText = data.ServiceCapabilities.Capabilities.Security.TLS1_2;
-                document.getElementById("servicecap-security-4").innerText = data.ServiceCapabilities.Capabilities.Security.OnboardKeyGeneration;
-                document.getElementById("servicecap-security-5").innerText = data.ServiceCapabilities.Capabilities.Security.AccessPolicyConfig;
-                document.getElementById("servicecap-security-6").innerText = data.ServiceCapabilities.Capabilities.Security.DefaultAccessPolicy;
-                document.getElementById("servicecap-security-7").innerText = data.ServiceCapabilities.Capabilities.Security.Dot1X;
-                document.getElementById("servicecap-security-8").innerText = data.ServiceCapabilities.Capabilities.Security.RemoteUserHandling;
-                document.getElementById("servicecap-security-9").innerText = data.ServiceCapabilities.Capabilities.Security.X509Token;
-                document.getElementById("servicecap-security-10").innerText = data.ServiceCapabilities.Capabilities.Security.SAMLToken;
-                document.getElementById("servicecap-security-11").innerText = data.ServiceCapabilities.Capabilities.Security.KerberosToken;
-                document.getElementById("servicecap-security-12").innerText = data.ServiceCapabilities.Capabilities.Security.UsernameToken;
-                document.getElementById("servicecap-security-13").innerText = data.ServiceCapabilities.Capabilities.Security.HTTPDigest;
-                document.getElementById("servicecap-security-14").innerText = data.ServiceCapabilities.Capabilities.Security.RELToken;
-                document.getElementById("servicecap-security-15").innerText = data.ServiceCapabilities.Capabilities.Security.SupportedEAPMethods.Types;
-                document.getElementById("servicecap-security-16").innerText = data.ServiceCapabilities.Capabilities.Security.MaxUsers;
-                document.getElementById("servicecap-security-17").innerText = data.ServiceCapabilities.Capabilities.Security.MaxUserNameLength;
-                document.getElementById("servicecap-security-18").innerText = data.ServiceCapabilities.Capabilities.Security.MaxPasswordLength;
-                document.getElementById("servicecap-system-1").innerText = data.ServiceCapabilities.Capabilities.System.DiscoveryResolve;
-                document.getElementById("servicecap-system-2").innerText = data.ServiceCapabilities.Capabilities.System.DiscoveryBye;
-                document.getElementById("servicecap-system-3").innerText = data.ServiceCapabilities.Capabilities.System.RemoteDiscovery;
-                document.getElementById("servicecap-system-4").innerText = data.ServiceCapabilities.Capabilities.System.SystemBackup;
-                document.getElementById("servicecap-system-5").innerText = data.ServiceCapabilities.Capabilities.System.SystemLogging;
-                document.getElementById("servicecap-system-6").innerText = data.ServiceCapabilities.Capabilities.System.FirmwareUpgrade;
-                document.getElementById("servicecap-system-7").innerText = data.ServiceCapabilities.Capabilities.System.HTTPFirmwareUpgrade;
-                document.getElementById("servicecap-system-8").innerText = data.ServiceCapabilities.Capabilities.System.HTTPSystemBackup;
-                document.getElementById("servicecap-system-9").innerText = data.ServiceCapabilities.Capabilities.System.HTTPSystemLogging;
-                document.getElementById("servicecap-system-10").innerText = data.ServiceCapabilities.Capabilities.System.HTTPSupportInformation;
-                document.getElementById("servicecap-system-11").innerText = data.ServiceCapabilities.Capabilities.System.StorageConfiguration;
-                document.getElementById("servicecap-system-12").innerText = data.ServiceCapabilities.Capabilities.System.MaxStorageConfigurations;
-                document.getElementById("servicecap-system-13").innerText = data.ServiceCapabilities.Capabilities.System.GeoLocationEntries;
-                document.getElementById("servicecap-system-14").innerText = data.ServiceCapabilities.Capabilities.System.AutoGeo;
-            });
     }
 
     function addCamera() {
@@ -400,7 +60,7 @@
             cameraList.appendChild(button);
             document.getElementById("camera-url-input").value = "";
 
-            // ส่งข้อมูลไปยัง API เพิ่มกล้อง
+            // Send data to the Add Camera API.
             fetch("/add_camera", {
                 method: "POST",
                 body: new URLSearchParams({
@@ -408,12 +68,12 @@
                 })
             });
         }
-        // เพิ่มโค้ดรีเฟรชหน้าเว็บ
+        // refresh the page
         location.reload();
     }
 
     function removeCamera(cameraURL) {
-        // ส่งข้อมูลไปยัง API ลบกล้อง
+        // Send data to the Remove Camera API.
         fetch("/remove_camera", {
             method: "POST",
             body: new URLSearchParams({
@@ -421,7 +81,7 @@
             })
         }).then(function (response) {
             if (response.ok) {
-                // ลบปุ่มกล้องออกจากหน้าเว็บ
+                // camera remove button
                 var cameraList = document.getElementById("camera-stream");
                 var buttons = cameraList.getElementsByTagName("button");
                 for (var i = 0; i < buttons.length; i++) {
@@ -432,7 +92,7 @@
                 }
             }
         });
-        // เพิ่มโค้ดรีเฟรชหน้าเว็บ
+        // refresh the page
         location.reload();
     }
 </script>

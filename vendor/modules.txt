@@ -7,9 +7,19 @@ github.com/gorilla/securecookie
 # github.com/gorilla/sessions v1.2.1
 ## explicit
 github.com/gorilla/sessions
-# github.com/mateors/msql v0.0.0-20221130043645-280860a386a7
+# github.com/inspii/onvif v0.0.0-20220209003952-107e7e0b00d2
+## explicit; go 1.16
+github.com/inspii/onvif
+github.com/inspii/onvif/device
+github.com/inspii/onvif/events
+github.com/inspii/onvif/media
+github.com/inspii/onvif/onvif
+github.com/inspii/onvif/ptz
+github.com/inspii/onvif/soap
+github.com/inspii/onvif/xsd
+# github.com/mateors/msql v0.0.0-20230316154058-0966f727302f
 ## explicit
 github.com/mateors/msql
-# github.com/mattn/go-sqlite3 v1.14.16
+# github.com/mattn/go-sqlite3 v1.14.17
 ## explicit; go 1.16
 github.com/mattn/go-sqlite3
