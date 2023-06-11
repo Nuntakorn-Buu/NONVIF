@@ -43,7 +43,7 @@ The essential coding skills required for this project.
 
 | Pages             | Systemes                |
 | ----------------- | ----------------------- |
-| ➡️ Home page      | ➡️ Signup               |
+| ➡️ Home page      | ➡️ Sign up              |
 | ➡️ Cameras page   | ➡️ Login                |
 | ➡️ Dashboard page | ➡️ Logout               |
 | ➡️ About page     | ➡️ Forget Password      |
@@ -135,7 +135,7 @@ To run tests, Run the following command
 
 If the `< go run . >` command is successful, you will see the following message below.
 
-ใส่รูป
+![go run .](https://github.com/Nuntakorn-Buu/NONVIF/blob/main/view/front-end/asset/images/go%20run.png?raw=true)
 
 ---
 
@@ -198,7 +198,7 @@ This project has been tested by :
 
 ---
 
-## 🙋🏻‍♂️ Authors
+## 🙋🏻‍♂️ Author
 
 - [@Nuntakorn [Non]](https://www.github.com/Nuntakorn-Buu)
 
