@@ -70,8 +70,6 @@ Clip Video : Please click on the camera image to view the Demo.
 
 [![Test Project](https://github.com/Nuntakorn-Buu/NONVIF/blob/main/view/front-end/asset/images/camera-1.png?raw=true)](https://youtu.be/6YH1yIA-MCc)
 
-<iframe width="400" height="0" src="https://youtu.be/6YH1yIA-MCc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-
 ---
 
 ## ⚙️ Component
