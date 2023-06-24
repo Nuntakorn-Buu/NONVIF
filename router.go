@@ -86,7 +86,7 @@ func loginAuth(w http.ResponseWriter, r *http.Request) {
 		}
 		http.Redirect(w, r, "/", http.StatusFound)
 	} else {
-		err := loginView.Template.Execute(w, "Please give me right username or password")
+		err := loginView.Template.Execute(w, "Please give me right email or password")
 		FetchError(err)
 	}
 }
