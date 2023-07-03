@@ -30,6 +30,8 @@ The essential coding skills required for this project.
 
 | Docs             | Link                                                                                                                              |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| ➡️ Document      | ➡️ [LINK](https://drive.google.com/file/d/1Co_ejLEJPGESMjHdrk_zhU_mMx6zOGVt/view?usp=sharing)                                     |
+| ➡️ PowerPoint    | ➡️ [LINK](https://drive.google.com/file/d/1sSjfiggxrBEAr-m3w4UvlPBXKenGvBAl/view?usp=sharing)                                     |
 | ➡️ Dropbox       | ➡️ [LINK](https://www.dropbox.com/sh/jysm351v3pfmnyr/AABIzDHCTdY0mFt5ScdX-Uzba?dl=0)                                              |
 | ➡️ Task List     | ➡️ [LINK](https://nuntakorn-sp.notion.site/1d183abc6dea4b3ba570bf8726195ae0?v=c5632d2adb3d40deaa79cb392fc82038&pvs=4)             |
 | ➡️ Work Plan 1   | ➡️ [LINK](https://www.dropbox.com/scl/fi/c98cdfjwiek2gxylp7h1y/Technical-Report-Non.paper?dl=0&rlkey=99122h15yh6enbrmwwgfkf79g)   |
@@ -202,6 +204,6 @@ This project has been tested by :
 
 ## 🙋🏻‍♂️ Author
 
-- [@Nuntakorn [Non]](https://www.github.com/Nuntakorn-Buu)
+- [@Nuntakorn [Non]](https://www.github.com/Nuntakorn-Buu) | Gmail : nuntakorn.sp@gmail.com
 
 ---
