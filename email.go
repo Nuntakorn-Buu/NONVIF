@@ -28,7 +28,7 @@ func emailSend(email string) {
 	smtpPort := "587"
 
 	// Message.
-	subject := "Subject: GolanLoginSystem Account Recovery\n"
+	subject := "Subject: LoginSystem NONVIF : Account Recovery\n"
 
 	mainMessage := fmt.Sprintf("<body>Welcome to master Academy, Your password  verification code is <h2 style=\"text-align:center;\"><span style=\"font-size:40px;border:2px solid black;padding:10px\">%v</span></h2> \n</body>", randomNUM)
 

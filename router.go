@@ -408,49 +408,57 @@ func metadatas(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
+	fmt.Println("Data From GetDeviceInformation :", di)
+	fmt.Println("")
 	users, err := camera.Device.GetUsers()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
+	fmt.Println("Data From GetUsers :", users)
+	fmt.Println("")
 	dateandtime, err := camera.Device.GetSystemDateAndTime()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
+	fmt.Println("Data From GetSystemDateAndTime :", dateandtime)
+	fmt.Println("")
 	cap, err := camera.Device.GetCapabilities()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
+	fmt.Println("Data From GetCapabilities :", cap)
+	fmt.Println("")
 	hostname, err := camera.Device.GetHostname()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
+	fmt.Println("Data From GetHostname :", hostname)
+	fmt.Println("")
 	networkprotocols, err := camera.Device.GetNetworkProtocols()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
+	fmt.Println("Data From GetNetworkProtocols :", networkprotocols)
+	fmt.Println("")
 	discovery, err := camera.Device.GetDiscoveryMode()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
+	fmt.Println("Data From GetDiscoveryMode :", discovery)
+	fmt.Println("")
 	servicecap, err := camera.Device.GetServiceCapabilities()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
+	fmt.Println("Data From GetServiceCapabilities :", servicecap)
+	fmt.Println("")
 	// Generate JSON data from di,users,dateandtime,cap,hostname networkprotocols, discovery and servicecap.
 	data := struct {
 		DeviceInformation   interface{}
@@ -471,23 +479,6 @@ func metadatas(w http.ResponseWriter, r *http.Request) {
 		DiscoveryMode:       discovery,
 		ServiceCapabilities: servicecap,
 	}
-	fmt.Println("Data From GetDeviceInformation :", di)
-	fmt.Println("")
-	fmt.Println("Data From GetUsers :", users)
-	fmt.Println("")
-	fmt.Println("Data From GetSystemDateAndTime :", dateandtime)
-	fmt.Println("")
-	fmt.Println("Data From GetCapabilities :", cap)
-	fmt.Println("")
-	fmt.Println("Data From GetHostname :", hostname)
-	fmt.Println("")
-	fmt.Println("Data From GetNetworkProtocols :", networkprotocols)
-	fmt.Println("")
-	fmt.Println("Data From GetDiscoveryMode :", discovery)
-	fmt.Println("")
-	fmt.Println("Data From GetServiceCapabilities :", servicecap)
-	fmt.Println("")
-
 	// Sends data back to the web page in JSON response format.
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(data)
